@@ -1,0 +1,1145 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><script>window.__STANDALONE=true;</script></head><body><title>Fan Fest Tokyo 2026 Planner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link id="ff-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style id="ff-style">
+/* Layout concept: a convention staff binder — a time-gridded program sheet beside a site plan, lit in crystal blue, with your own picks marked in gold. */
+:root{
+  --bg:#EDF0F6; --surface:#FFFFFF; --surface-2:#F5F7FB; --ink:#131A2E; --muted:#58617D; --line:#D2D8E5;
+  --aether:#2350BF; --aether-soft:#DCE5FA; --gold:#9E6812; --gold-soft:#F7EAD1; --danger:#B3261E; --danger-soft:#FBE3E1;
+  --c-stage:#2350BF; --c-activity:#0E7471; --c-exhibit:#6A4CB3; --c-goods:#B13F69; --c-food:#2E7A39; --c-service:#5A6380;
+  --ballot:#7A3FB8; --pay:#A2520E;
+  --f-display:'Shippori Mincho B1','Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;
+  --f-body:'Zen Kaku Gothic New','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','Yu Gothic',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --r:10px; --pxh:72px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1120; --surface:#151B2D; --surface-2:#1A2136; --ink:#E7EBF5; --muted:#9AA3C0; --line:#2A3352;
+  --aether:#83A9FF; --aether-soft:#1C2950; --gold:#E6B65C; --gold-soft:#3A2D14; --danger:#FF8A80; --danger-soft:#3D1A19;
+  --c-stage:#83A9FF; --c-activity:#4FC6C1; --c-exhibit:#B59CFF; --c-goods:#F28DB4; --c-food:#7ECC88; --c-service:#9AA3C0;
+  --ballot:#C79BFF; --pay:#F2A65A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1120; --surface:#151B2D; --surface-2:#1A2136; --ink:#E7EBF5; --muted:#9AA3C0; --line:#2A3352;
+  --aether:#83A9FF; --aether-soft:#1C2950; --gold:#E6B65C; --gold-soft:#3A2D14; --danger:#FF8A80; --danger-soft:#3D1A19;
+  --c-stage:#83A9FF; --c-activity:#4FC6C1; --c-exhibit:#B59CFF; --c-goods:#F28DB4; --c-food:#7ECC88; --c-service:#9AA3C0;
+  --ballot:#C79BFF; --pay:#F2A65A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--aether);outline-offset:2px}
+a{color:var(--aether)}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* bilingual pair: Japanese first, English smaller beneath */
+.bi{display:inline-flex;flex-direction:column;line-height:1.25;min-width:0;max-width:100%}
+.bi .jp,.bi .en{overflow-wrap:break-word;min-width:0}
+.bi .en{font-size:.72em;color:var(--muted);font-weight:500;letter-spacing:.01em;margin-top:1px}
+.bi.row{flex-direction:row;align-items:baseline;gap:.4em;flex-wrap:wrap}
+.bi.row .en{margin-top:0}
+
+/* masthead */
+.mast{background:var(--surface);border-bottom:1px solid var(--line)}
+.mast .wrap{padding-block:22px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 32px;align-items:end}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.eyebrow .tag{border:1px solid var(--line);border-radius:999px;padding:1px 9px;letter-spacing:.04em;text-transform:none}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,4.2vw,44px);line-height:1.12;margin:8px 0 0;text-wrap:balance}
+h1 .en{display:block;font-family:var(--f-body);font-weight:500;font-size:.42em;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:14px}
+.facts > div{display:flex;flex-direction:column}
+.facts b{font-weight:700}
+.facts small{color:var(--muted);font-size:11.5px}
+.ruler{height:10px;margin-top:16px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 12px);border-bottom:1px solid var(--line);max-width:640px}
+.count{text-align:right}
+.count .num{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,6vw,64px);line-height:1;color:var(--aether)}
+.count .lbl{font-size:13px}
+.count .lbl .en{font-size:11px;color:var(--muted);display:block}
+
+.notice{display:flex;gap:12px;align-items:flex-start;background:color-mix(in srgb,var(--ballot) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--ballot) 40%,transparent);border-radius:var(--r);padding:10px 14px;margin-top:14px;font-size:13.5px}
+.notice .en{display:block;color:var(--muted);font-size:12px}
+
+/* tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px 8px;cursor:pointer;text-align:left;white-space:nowrap}
+.tab .jp{font-weight:700;font-size:14.5px}
+.tab[aria-selected="true"]{border-bottom-color:var(--aether)}
+.tab[aria-selected="true"] .jp{color:var(--aether)}
+.tab .count-b{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:var(--gold);color:var(--surface);font-size:11px;font-family:var(--f-mono);text-align:center;margin-left:4px}
+.net{margin-left:auto;align-self:center;font-size:11.5px;display:flex;align-items:center;gap:6px;color:var(--muted);white-space:nowrap;padding-left:12px}
+.net i{width:8px;height:8px;border-radius:50%;background:var(--c-activity);display:inline-block}
+.net.off i{background:var(--gold)}
+
+main{padding-block:20px 48px}
+.view[hidden]{display:none}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px}
+.seg button{border:0;background:none;border-radius:999px;padding:5px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.seg button[aria-pressed="true"] .en{color:color-mix(in srgb,var(--surface) 75%,transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.fchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 11px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.fchip[aria-pressed="true"]{border-color:var(--aether);background:var(--aether-soft)}
+.fchip[aria-pressed="false"]{opacity:.6}
+.lbl-s{font-size:12px;color:var(--muted)}
+
+/* badges: ballot + extra payment */
+.bdg{display:inline-flex;align-items:center;gap:3px;border-radius:5px;padding:0 5px;font-size:10.5px;font-weight:700;line-height:17px;white-space:nowrap;border:1px solid}
+.bdg.ballot{color:var(--ballot);border-color:color-mix(in srgb,var(--ballot) 55%,transparent);background:color-mix(in srgb,var(--ballot) 10%,transparent)}
+.bdg.ballot.req{background:var(--ballot);color:var(--surface);border-color:var(--ballot)}
+.bdg.pay{color:var(--pay);border-color:color-mix(in srgb,var(--pay) 55%,transparent);background:color-mix(in srgb,var(--pay) 10%,transparent)}
+.bdg.pay.req{background:var(--pay);color:var(--surface);border-color:var(--pay)}
+.bdg.neutral{color:var(--muted);border-color:var(--line)}
+.bdgs{display:flex;flex-wrap:wrap;gap:3px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:var(--muted);align-items:center;margin:8px 0 12px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--c)}
+
+/* schedule grid */
+.sched{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:auto;max-height:min(80vh,1180px);position:relative}
+.sgrid{display:grid;min-width:max-content}
+.shead{position:sticky;top:0;z-index:4;background:var(--surface);border-bottom:1px solid var(--line)}
+.shead,.sbody{display:grid;grid-template-columns:62px repeat(var(--n),minmax(176px,1fr))}
+.shead .corner{position:sticky;left:0;z-index:5;background:var(--surface);font-size:10.5px;color:var(--muted);padding:8px 6px;border-right:1px solid var(--line)}
+.colh{padding:9px 10px;border-right:1px solid var(--line);text-align:left;background:var(--surface);border-top:0;border-bottom:0;border-left:0;cursor:pointer}
+.colh:hover{background:var(--surface-2)}
+.colh .jp{font-weight:700;font-size:13.5px}
+.colh .sub{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.gutter{position:sticky;left:0;z-index:3;background:var(--surface);border-right:1px solid var(--line)}
+.gutter span{position:absolute;right:8px;transform:translateY(-50%);font-size:11px;color:var(--muted)}
+.col{position:relative;border-right:1px solid var(--line);background-image:repeating-linear-gradient(180deg,var(--line) 0 1px,transparent 1px var(--pxh)),repeating-linear-gradient(180deg,color-mix(in srgb,var(--line) 45%,transparent) 0 1px,transparent 1px calc(var(--pxh) / 2));background-position:0 0,0 0}
+.closed{position:absolute;left:0;right:0;background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--line) 55%,transparent) 6px 7px);pointer-events:none}
+.mark{position:absolute;left:0;right:0;border-top:1.5px dashed var(--muted);z-index:1;pointer-events:none}
+.mark b{position:absolute;left:4px;top:-9px;font-size:10px;background:var(--surface);padding:0 4px;color:var(--muted);font-weight:600}
+.nowline{position:absolute;left:0;right:0;border-top:2px solid var(--danger);z-index:3;pointer-events:none}
+.nowline::before{content:"";position:absolute;left:-4px;top:-5px;width:8px;height:8px;border-radius:50%;background:var(--danger)}
+
+.ev{position:absolute;left:5px;right:5px;z-index:2;border-radius:8px;border:1px solid color-mix(in srgb,var(--c) 50%,transparent);background:color-mix(in srgb,var(--c) 13%,var(--surface));overflow:hidden;display:flex}
+.ev.on{border:2px solid var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--surface))}
+.ev.dim{opacity:.28}
+.ev-main{appearance:none;border:0;background:none;text-align:left;padding:5px 30px 5px 8px;cursor:pointer;flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ev-main .t{font-size:11px;color:var(--c);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;flex:none}
+.ev.on .ev-main .t{color:var(--gold)}
+.ev-main .jp{font-weight:700;font-size:13px;line-height:1.3;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--lj,2);overflow:hidden;overflow-wrap:anywhere}
+.ev-main .en{font-size:10.5px;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--le,1);overflow:hidden;overflow-wrap:anywhere}
+.ev.short .ev-main{flex-direction:row;align-items:center;gap:6px;padding-top:2px;padding-bottom:2px}
+.ev.short .ev-main .en{display:none}
+.ev-main .t2{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;flex:none}
+.ev-main .t2 .clash-tag{margin-right:4px}
+.ev.short .ev-main .t2{display:none}
+.timepick select{max-width:100%}
+.ev.short .ev-main .jp{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.star{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;font-size:13px;line-height:1;color:var(--muted);padding:0}
+.star[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--surface)}
+.band{position:absolute;left:5px;right:5px;border:1px dashed color-mix(in srgb,var(--muted) 60%,transparent);border-radius:8px;background:color-mix(in srgb,var(--surface-2) 70%,transparent);padding:8px 6px;display:flex;flex-direction:column;gap:5px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;z-index:1}
+.band .more{position:sticky;bottom:-8px;margin:0 -6px -8px;padding:10px 6px 4px;text-align:center;font-size:10.5px;color:var(--muted);background:linear-gradient(transparent,var(--surface-2) 55%);pointer-events:none}
+.band-h{font-size:11px;color:var(--muted);padding:0 2px 4px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.band-h b{color:var(--ink);font-weight:700}
+.bchip{appearance:none;display:flex;gap:6px;align-items:flex-start;text-align:left;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:var(--surface);border-radius:7px;padding:5px 7px;cursor:pointer;font-size:12px;width:100%;flex:none;overflow-wrap:anywhere}
+.bchip .dot{flex:none;margin-top:4px}
+.bchip .nm{flex:1;min-width:0}
+.bchip .nm .en{font-size:10px}
+.bchip.on{border:2px solid var(--gold);background:color-mix(in srgb,var(--gold) 12%,var(--surface))}
+.bchip.dim{opacity:.28}
+.bchip .bdgs{margin-top:3px}
+.hint{font-size:12px;color:var(--muted);margin-top:8px}
+
+/* map */
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
+.mapbox{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow-x:auto}
+.mapbox svg{display:block;width:100%;min-width:760px;height:auto}
+.mapbox .cap{font-size:11.5px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:space-between;position:sticky;left:0}
+svg .area{cursor:pointer}
+svg .area rect,svg .area circle{transition:fill .15s}
+svg .area:hover rect.fill,svg .area:focus rect.fill{fill:var(--aether-soft)}
+svg .area:focus{outline:none}
+svg .area:focus rect.fill{stroke:var(--aether);stroke-width:3}
+svg .area.sel rect.fill{stroke:var(--aether);stroke-width:3;fill:var(--aether-soft)}
+.arealist{display:flex;flex-direction:column;gap:10px}
+.acard{border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.acard > button{appearance:none;width:100%;background:none;border:0;text-align:left;padding:10px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.acard > button .jp{font-weight:700}
+.acard .meta{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
+.acard.sel{border-color:var(--aether);box-shadow:0 0 0 1px var(--aether)}
+
+/* agenda */
+.ag-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+.panel{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px}
+.panel h2,.panel h3{margin:0 0 10px;font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1.25}
+.panel h2 .en,.panel h3 .en{display:block;font-family:var(--f-body);font-size:12px;font-weight:500;color:var(--muted)}
+.ag-sum{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.pill{border-radius:999px;padding:3px 10px;font-size:12.5px;background:var(--surface-2);border:1px solid var(--line)}
+.pill.warn{background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 40%,transparent);color:var(--danger)}
+.tl{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);border-top:1px solid var(--line)}
+.tl .gutter{position:relative;border-right:1px solid var(--line);left:auto}
+.tl .lane{position:relative;background-image:repeating-linear-gradient(180deg,var(--line) 0 1px,transparent 1px var(--pxh))}
+.tl .ev{left:auto;right:auto}
+.ev.clash{border-color:var(--danger);box-shadow:inset 0 0 0 1px var(--danger)}
+.clash-tag{font-size:10px;color:var(--danger);font-weight:700}
+.empty{border:1px dashed var(--line);border-radius:var(--r);padding:22px;text-align:center;color:var(--muted);font-size:13.5px}
+.empty b{color:var(--ink)}
+.todo{display:flex;flex-direction:column;gap:8px}
+.todo-item{border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center}
+.todo-item .loc{font-size:11.5px;color:var(--muted)}
+.todo-item > div{min-width:0}
+.todo-item .ctl{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+select{font:inherit;font-size:12.5px;padding:3px 6px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn{appearance:none;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;cursor:pointer;display:inline-flex;flex-direction:column;align-items:flex-start;text-align:left;line-height:1.25}
+.btn .jp{font-weight:700;font-size:13.5px}
+.btn .en{font-size:11px;color:var(--muted)}
+.btn.primary{background:var(--aether);border-color:var(--aether);color:var(--surface)}
+.btn.primary .en{color:color-mix(in srgb,var(--surface) 80%,transparent)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--surface)}
+.btn.gold .en{color:color-mix(in srgb,var(--surface) 80%,transparent)}
+.btn.ghost{background:none}
+.btn.sm{padding:4px 9px}
+.btn.sm .jp{font-size:12px}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px}
+.exp p{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+
+/* info */
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.info .panel p,.info .panel li{font-size:13.5px}
+.info .panel .en{color:var(--muted);font-size:12px}
+.info ul{padding-left:18px;margin:6px 0}
+.info dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0;font-size:13.5px}
+.info dt{color:var(--muted)}
+.info dd{margin:0}
+
+/* detail sheet */
+.scrim{position:fixed;inset:0;background:color-mix(in srgb,#000 38%,transparent);z-index:20}
+.sheet{position:fixed;z-index:21;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);border-left:1px solid var(--line);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.sheet-h{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-start;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.sheet-h .x{margin-left:auto;flex:none}
+.sheet-b{overflow:auto;padding:14px 16px 24px;display:flex;flex-direction:column;gap:14px}
+.sheet h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:21px;line-height:1.25;text-wrap:balance}
+.sheet h2 .en{display:block;font-family:var(--f-body);font-size:13px;color:var(--muted);font-weight:500;margin-top:3px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:13.5px}
+.kv dt{color:var(--muted);font-size:12px;padding-top:2px}
+.kv dd{margin:0}
+.desc p{margin:0;font-size:14px}
+.desc p.en{color:var(--muted);font-size:12.5px;margin-top:4px}
+.callout{border-radius:8px;padding:9px 11px;font-size:13px}
+.callout .en{display:block;font-size:11.5px;color:var(--muted)}
+.callout.ballot{background:color-mix(in srgb,var(--ballot) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--ballot) 35%,transparent)}
+.callout.pay{background:color-mix(in srgb,var(--pay) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--pay) 35%,transparent)}
+.slist{display:flex;flex-direction:column;gap:6px}
+.srow{appearance:none;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:7px 9px;cursor:pointer;font-size:13px}
+.srow .mono{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.srow > span{min-width:0}
+.seatfig{border:1px solid var(--line);border-radius:8px;background:var(--surface-2);padding:8px}
+.seatfig svg{display:block;width:100%;height:auto}
+.srow.on{border-color:var(--gold)}
+.timepick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--ink);color:var(--surface);border-radius:10px;padding:9px 14px;font-size:13px;box-shadow:0 6px 24px color-mix(in srgb,#000 25%,transparent);max-width:min(92vw,460px)}
+.toast .en{display:block;font-size:11.5px;opacity:.75}
+textarea.copybox{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);color:var(--ink);padding:8px}
+
+footer{border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:6px}
+
+@media (max-width:900px){
+  .mapgrid,.ag-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .mast .wrap{grid-template-columns:minmax(0,1fr)}
+  .count{text-align:left;display:flex;gap:10px;align-items:baseline}
+  .sheet{top:auto;width:100%;max-height:88%;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;padding-left:env(safe-area-inset-left,0px)}
+  .net span.en{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div id="app">
+<header class="mast">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span>非公式ファンガイド · Unofficial fan guide</span><span class="tag">全時刻 JST（UTC+9）· All times JST</span></div>
+      <h1>ファンフェスティバル 2026 in 東京<span class="en">FINAL FANTASY XIV Fan Festival 2026 in Tokyo — planner &amp; venue guide</span></h1>
+      <div class="facts">
+        <div><b>10.31 土 – 11.01 日</b><small>Sat Oct 31 – Sun Nov 1, 2026</small></div>
+        <div><b class="mono">開場 09:00 – 終了 21:00</b><small>Doors 09:00 – close 21:00 (both days)</small></div>
+        <div><b>幕張メッセ 展示ホール1–7</b><small>Makuhari Messe Halls 1–7 + AEON Mall Makuhari Shintoshin + Toyosuna Park</small></div>
+      </div>
+      <div class="ruler" aria-hidden="true"></div>
+    </div>
+    <div class="count" id="countdown"></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" data-view="schedule" id="tab-schedule"><span class="bi"><span class="jp">スケジュール</span><span class="en">Schedule</span></span></button>
+    <button class="tab" role="tab" data-view="map" id="tab-map"><span class="bi"><span class="jp">会場マップ</span><span class="en">Venue map</span></span></button>
+    <button class="tab" role="tab" data-view="agenda" id="tab-agenda"><span class="bi"><span class="jp">マイアジェンダ<span class="count-b" id="agenda-count">0</span></span><span class="en">My agenda</span></span></button>
+    <button class="tab" role="tab" data-view="info" id="tab-info"><span class="bi"><span class="jp">インフォ</span><span class="en">Info</span></span></button>
+    <div class="net" id="net"><i></i><span class="bi"><span class="jp" id="net-jp">オンライン</span><span class="en" id="net-en">Works offline once loaded</span></span></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="notice" id="ballot-notice"></div>
+
+  <section class="view" id="view-schedule" aria-labelledby="tab-schedule">
+    <div class="toolbar" style="margin-top:16px">
+      <div class="seg" id="day-seg"></div>
+      <div class="chips" id="col-chips" aria-label="Venues"></div>
+    </div>
+    <div class="toolbar">
+      <span class="lbl-s">ハイライト · Highlight</span>
+      <div class="seg" id="hl-seg"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="sched" id="sched"></div>
+    <p class="hint">ブロックをタップで詳細、☆でマイアジェンダに追加。点線の枠は終日開催のブース（時間指定なし）。<br><span>Tap a block for details; ☆ adds it to My agenda. Dashed panels list all-day booths with no fixed session times.</span></p>
+  </section>
+
+  <section class="view" id="view-map" aria-labelledby="tab-map" hidden>
+    <div class="legend" id="legend-map" style="margin-top:16px"></div>
+    <div class="mapgrid">
+      <div class="mapbox">
+        <div id="map-svg"></div>
+        <div class="cap"><span>簡略図・縮尺不同。実際の配置は公式フロアマップを参照。· Simplified schematic, not to scale; check the official floor maps for exact positions.</span><span>金の数字＝マイアジェンダの件数 · Gold numbers = items in My agenda</span></div>
+      </div>
+      <div class="arealist" id="area-list"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-agenda" aria-labelledby="tab-agenda" hidden>
+    <div class="toolbar" style="margin-top:16px"><div class="seg" id="ag-day-seg"></div></div>
+    <div class="ag-grid">
+      <div class="panel">
+        <h2>マイアジェンダ<span class="en">My agenda — your own day calendar</span></h2>
+        <div class="ag-sum" id="ag-sum"></div>
+        <div id="ag-tl"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="panel">
+          <h3>行きたいブース<span class="en">Booths to visit — set a time to place them on your calendar</span></h3>
+          <div class="todo" id="ag-todo"></div>
+        </div>
+        <div class="panel exp">
+          <h3>オフライン・書き出し<span class="en">Offline &amp; export</span></h3>
+          <div class="btn-row">
+            <button class="btn primary" id="btn-offline"><span class="jp">オフライン版を保存</span><span class="en">Save offline copy (.html)</span></button>
+            <button class="btn" id="btn-csv"><span class="jp">カレンダー用CSV</span><span class="en">Calendar CSV</span></button>
+            <button class="btn" id="btn-ics"><span class="jp">iCal (.ics)</span><span class="en">Apple / Outlook</span></button>
+            <button class="btn" id="btn-copy"><span class="jp">テキストでコピー</span><span class="en">Copy as text</span></button>
+          </div>
+          <p>オフライン版はこのガイド全体とあなたの予定を1つのファイルに保存します。スマホに保存すれば電波がなくても開けます。CSVはGoogleカレンダーで読み込めます（カレンダーのタイムゾーンを日本時間に）。<br>The offline copy saves the whole guide plus your picks in one file you can open with no signal. The CSV imports into Google Calendar (set the calendar's time zone to Tokyo first). The .ics file uses UTC times and imports correctly anywhere.</p>
+          <div id="copy-fallback" hidden><textarea class="copybox" id="copy-text" readonly></textarea></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn ghost sm" id="btn-clear"><span class="jp">すべてクリア</span><span class="en">Clear my agenda</span></button></div>
+          <div id="clear-confirm" hidden style="margin-top:8px" class="callout pay"><span>本当に削除しますか？<span class="en">Remove every item from My agenda?</span></span><div class="btn-row" style="margin-top:6px"><button class="btn sm gold" id="btn-clear-yes"><span class="jp">削除する</span><span class="en">Yes, clear</span></button><button class="btn sm" id="btn-clear-no"><span class="jp">やめる</span><span class="en">Keep</span></button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-info" aria-labelledby="tab-info" hidden>
+    <div class="info" id="info" style="margin-top:16px"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>本サイトは非公式のファン制作ガイドで、株式会社スクウェア・エニックスとは関係ありません。情報は2026年10月21日時点の公式サイトに基づき、変更される場合があります。</span>
+    <span>Unofficial fan-made guide, not affiliated with SQUARE ENIX. Based on the official event site as of Oct 21, 2026; programs and layouts may change, so check the <a href="https://fanfest.finalfantasyxiv.com/2026/jp/" target="_blank" rel="noopener">official site</a> before you go.</span>
+  </div>
+</footer>
+</div>
+
+<div id="overlay-root"></div>
+
+<script id="ff-script">
+(function(){
+"use strict";
+var PRISTINE = document.getElementById('app').outerHTML;
+var STANDALONE = !!window.__STANDALONE;
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function B(jp,en,cls){return '<span class="bi '+(cls||'')+'"><span class="jp">'+jp+'</span>'+(en?'<span class="en">'+en+'</span>':'')+'</span>';}
+function M(t){var p=t.split(':');return (+p[0])*60+(+p[1]);}
+function T(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+function $(id){return document.getElementById(id);}
+
+/* ---------- data (official site, as of 2026-10-21) ---------- */
+var DAYS=[{n:1,date:'2026-10-31',jp:'DAY 1 · 10/31（土）',en:'Sat, Oct 31'},{n:2,date:'2026-11-01',jp:'DAY 2 · 11/1（日）',en:'Sun, Nov 1'}];
+var CATS={
+  stage:{jp:'ステージ',en:'Stage',v:'--c-stage'},
+  activity:{jp:'アクティビティ',en:'Activity',v:'--c-activity'},
+  exhibit:{jp:'展示',en:'Exhibit',v:'--c-exhibit'},
+  goods:{jp:'グッズ',en:'Goods',v:'--c-goods'},
+  food:{jp:'フード',en:'Food',v:'--c-food'},
+  service:{jp:'サービス',en:'Service',v:'--c-service'}
+};
+/* ballot: 'req' = ballot required to take part; 'opt' = optional ballot for the priority queue.
+   pay:    'req' = extra payment needed; 'stream' = on-site viewing included, online stream is paid; 'buy' = you pay for what you buy */
+var TAGS={
+  free:['無料配信あり','Free live stream'],
+  lv:['ライブビューイング（イオンシネマ）','Live viewing at AEON Cinema'],
+  preview:['特別先行体験','Special early preview'],
+  online:['オンラインでも実施','Also available online'],
+  noticket:['ファンフェスのチケット不要','No Fan Fest ticket needed'],
+  cash:['現金も利用可','Cash accepted'],
+  cashless:['キャッシュレス決済のみ','Cashless payment only']
+};
+
+var AREAS={
+  stage:{jp:'ステージエリア',en:'Stage Area',where:['幕張メッセ（4-6ホール付近）','Makuhari Messe (around Halls 4–6)'],col:'stage'},
+  photo:{jp:'クイックフォトセッション会場',en:'Quick Photo Session',where:['幕張メッセ 4-6ホール','Makuhari Messe Halls 4–6'],col:'h46'},
+  zA:{jp:'エリア A',en:'Zone A',where:['幕張メッセ 1-3ホール','Makuhari Messe Halls 1–3'],col:'h13'},
+  zB:{jp:'エリア B',en:'Zone B',where:['幕張メッセ 1-3ホール','Makuhari Messe Halls 1–3'],col:'h13'},
+  zC:{jp:'エリア C',en:'Zone C',where:['幕張メッセ 1-3ホール','Makuhari Messe Halls 1–3'],col:'h13'},
+  zD:{jp:'エリア D',en:'Zone D',where:['幕張メッセ 1-3ホール','Makuhari Messe Halls 1–3'],col:'h13'},
+  h13:{jp:'1-3ホール 特設ブース',en:'Halls 1–3 pop-up booth',where:['幕張メッセ 1-3ホール','Makuhari Messe Halls 1–3'],col:'h13'},
+  zE:{jp:'エリア E',en:'Zone E',where:['幕張メッセ 7ホール','Makuhari Messe Hall 7'],col:'h7'},
+  mall2f:{jp:'2F 中央モール',en:'2F Central Mall',where:['幕張メッセ 2階','Makuhari Messe, 2nd floor'],col:'mall'},
+  outdoor:{jp:'屋外展示場',en:'Outdoor Exhibition Area',where:['幕張メッセ 屋外','Makuhari Messe, outdoors'],col:'mall'},
+  messe:{jp:'幕張メッセ各所',en:'Around Makuhari Messe',where:['幕張メッセ','Makuhari Messe'],col:'mall'},
+  aeon:{jp:'イオンモール幕張新都心',en:'AEON Mall Makuhari Shintoshin',where:['千葉市美浜区豊砂1-1','1-1 Toyosuna, Mihama-ku, Chiba'],col:'aeon'},
+  park:{jp:'豊砂公園',en:'Toyosuna Park',where:['千葉市美浜区豊砂1-12','1-12 Toyosuna, Mihama-ku, Chiba'],col:'park'},
+  xwave:{jp:'クロス・ウェーブ幕張',en:'Cross Wave Makuhari',where:['幕張テクノガーデンA棟 2Fロビー','Makuhari Techno Garden Bldg. A, 2F lobby'],col:'xwave'}
+};
+
+var COLS=[
+  {id:'stage',jp:'ステージエリア',en:'Stage Area',sjp:'基調講演・ライブ',sen:'Keynote, panels, concerts',area:'stage'},
+  {id:'h46',jp:'4-6ホール',en:'Halls 4–6',sjp:'クイックフォト',sen:'Quick Photo Session',area:'photo'},
+  {id:'h13',jp:'1-3ホール',en:'Halls 1–3',sjp:'エリア A–D',sen:'Zones A–D',area:'zB'},
+  {id:'h7',jp:'7ホール',en:'Hall 7',sjp:'エリア E',sen:'Zone E',area:'zE'},
+  {id:'mall',jp:'2Fモール・屋外',en:'2F Mall & Outdoor',sjp:'グッズ・展示',sen:'Merch & displays',area:'outdoor'},
+  {id:'aeon',jp:'イオンモール',en:'AEON Mall',sjp:'チケット不要',sen:'No ticket needed',area:'aeon'},
+  {id:'park',jp:'豊砂公園',en:'Toyosuna Park',sjp:'フードエリア',sen:'Food area',area:'park'},
+  {id:'xwave',jp:'クロス・ウェーブ幕張',en:'Cross Wave Makuhari',sjp:'更衣室・クローク',sen:'Cosplay room & cloak',area:'xwave'}
+];
+
+var STREAM_PAID='有料配信 両日券 ¥4,950（税込）＋手数料¥660。会場での観覧はチケットに含まれます。';
+var STREAM_PAID_EN='Paid online stream: both-days ticket ¥4,950 + ¥660 fee. Watching in the venue is included with your Fan Fest ticket.';
+
+var EVENTS=[
+ {id:'d1-keynote',day:1,area:'stage',s:'11:00',e:'13:00',cat:'stage',jp:'基調講演',en:'Keynote',cast:[['吉田直樹','Naoki Yoshida']],
+  djp:'プロデューサー兼ディレクターの吉田直樹が、FFXIVのこれからの展開を発表します。新拡張『白銀のワンダラー』の続報が期待されるメイン企画です。',den:'Producer & Director Naoki Yoshida presents what is next for FFXIV, the headline session of the weekend.',tags:['free','lv']},
+ {id:'d1-ccsf',day:1,area:'stage',s:'15:00',e:'16:30',cat:'stage',sjp:'クリコン日本大会 準決勝',sen:'Crystalline Conflict Japan · Semifinal',jp:'クリスタルコンフリクト リージョンチャンピオンシップ 2026 Japan セミファイナル',en:'Crystalline Conflict Regional Championship 2026 Japan — Semifinal',
+  cast:[['央川とうい（MC）','Toui Okawa (MC)'],['so5u（実況）','so5u (play-by-play)'],['せらヴぃ（解説）','Celavi (analyst)'],['吉田直樹（解説）','Naoki Yoshida (analyst)']],
+  djp:'予選を勝ち抜いた4チームが日本王者の座をかけて戦う公式PvP大会（Powered by Logicool G）。',den:'The four teams that came through qualifiers fight for the Japan title in the official PvP tournament (powered by Logicool G).',tags:['free']},
+ {id:'d1-timeattack',day:1,area:'stage',s:'16:30',e:'17:00',cat:'stage',sjp:'一問一答タイムアタック',sen:'Rapid-Fire Q&A',jp:'吉田Pの一問一答タイムアタック！',en:"Yoshi-P's Rapid-Fire Q&A Time Attack",cast:[['吉田直樹','Naoki Yoshida'],['室内俊夫','Toshio Murouchi']],
+  djp:'寄せられた質問に、吉田Pが一問一答形式で制限時間内にできるだけ多く答えるチャレンジ企画。',den:'Yoshi-P answers as many submitted questions as he can, one quick answer each, against the clock.',tags:['free']},
+ {id:'d1-ccfinal',day:1,area:'stage',s:'17:00',e:'18:30',cat:'stage',sjp:'クリコン日本大会 決勝',sen:'Crystalline Conflict Japan · Final',jp:'クリスタルコンフリクト リージョンチャンピオンシップ 2026 Japan ファイナル',en:'Crystalline Conflict Regional Championship 2026 Japan — Final',
+  cast:[['央川とうい（MC）','Toui Okawa (MC)'],['so5u（実況）','so5u (play-by-play)'],['せらヴぃ（解説）','Celavi (analyst)'],['吉田直樹（解説）','Naoki Yoshida (analyst)']],
+  djp:'日本王者が決まる決勝戦。',den:'The championship match that decides the Japan title.',tags:['free']},
+ {id:'d1-piano',day:1,area:'stage',s:'19:30',e:'20:30',cat:'stage',jp:'ピアノコンサート',en:'Piano Concert',cast:[['Keiko','Keiko'],['Amanda Achen（ゲスト）','Amanda Achen (guest)']],
+  djp:'FFXIVの楽曲をピアノアレンジで、Keikoさんが演奏します。ステージ制作：808。',den:'Keiko performs piano arrangements of FFXIV music. Stage production by 808.',pay:'stream',tags:[]},
+ {id:'d2-devpanel',day:2,area:'stage',s:'10:30',e:'12:00',cat:'stage',jp:'開発パネル',en:'Developer Panel (Sound)',cast:[['今村貴文','Takafumi Imamura'],['石川大樹','Daiki Ishikawa'],['祖堅正慶','Masayoshi Soken']],
+  djp:'コンポーザー2名とサウンドディレクター祖堅正慶が、BGMの作り方や制作の裏話を語ります。',den:'Two composers and sound director Masayoshi Soken talk through how the game music is made, with stories from production.',tags:['free']},
+ {id:'d2-liveqa',day:2,area:'stage',s:'12:30',e:'13:30',cat:'stage',jp:'LIVE Q&A',en:'Live Q&A',cast:[['吉田直樹','Naoki Yoshida'],['室内俊夫','Toshio Murouchi']],
+  djp:'来場者から募集した質問に吉田Pが答えます。募集方法は公式から後日案内。',den:'Yoshi-P answers questions collected from attendees; the official site will announce how to submit one.',tags:['free']},
+ {id:'d2-glamour',day:2,area:'stage',s:'13:50',e:'15:00',cat:'stage',jp:'ミラプリコレクション',en:'Glamour Collection (fashion show)',cast:[['ゆいP（おかずクラブ）','Yui-P (Okazu Club)'],['室内俊夫','Toshio Murouchi']],
+  djp:'来場者と作るファッションショー。リアル部門（コスプレ）とインゲーム部門の2部構成。',den:'A fashion show built with attendees, with a real-life cosplay division and an in-game glamour division.',tags:['free']},
+ {id:'d2-naoki',day:2,area:'stage',s:'15:30',e:'17:30',cat:'stage',jp:'直樹の部屋',en:"Naoki's Room",cast:[['吉田直樹','Naoki Yoshida'],['室内俊夫','Toshio Murouchi'],['ゲスト：濱田龍臣、k4sen、SHAKA、赤見かるび、Clutch_Fi、葛葉、猫麦とろろ、おぼ、うるか、トナカイト、Sasatikk','Guests: Tatsuomi Hamada, k4sen, SHAKA, Karubi Akami, Clutch_Fi, Kuzuha, Nekomugi Tororo, Obo, Uruca, Tonakaito, Sasatikk']],
+  djp:'吉田Pがゲストを招いてトークする恒例企画。',den:'Yoshi-P hosts a talk session with a large guest lineup.',tags:['free']},
+ {id:'d2-primals',day:2,area:'stage',s:'19:00',e:'20:30',cat:'stage',jp:'スペシャルライブ - THE PRIMALS',en:'Special Live — THE PRIMALS',cast:[['THE PRIMALS','THE PRIMALS'],['AKINO（ゲスト）','AKINO (guest)'],['伊藤友馬（ゲスト）','Yuma Ito (guest)']],
+  djp:'祖堅正慶率いるTHE PRIMALSのライブ。着席エリアでも立ち上がって観覧可。ステージ制作：808。',den:'Live set from THE PRIMALS, led by Masayoshi Soken. You may stand up in the seated area for this show. Stage production by 808.',pay:'stream',tags:['lv']},
+
+ {id:'d1-qp-primals-1',day:1,area:'photo',s:'14:00',e:'14:30',cat:'activity',jp:'クイックフォトセッション：THE PRIMALS ①',en:'Quick Photo Session: THE PRIMALS (1)',sjp:'フォト：THE PRIMALS ①',sen:'Photo: THE PRIMALS (1)',ballot:'req',assembly:true,tags:[]},
+ {id:'d1-qp-primals-2',day:1,area:'photo',s:'16:15',e:'16:45',cat:'activity',jp:'クイックフォトセッション：THE PRIMALS ②',en:'Quick Photo Session: THE PRIMALS (2)',sjp:'フォト：THE PRIMALS ②',sen:'Photo: THE PRIMALS (2)',ballot:'req',assembly:true,tags:[]},
+ {id:'d2-qp-keiko-1',day:2,area:'photo',s:'12:00',e:'12:30',cat:'activity',jp:'クイックフォトセッション：Keiko ①',en:'Quick Photo Session: Keiko (1)',sjp:'フォト：Keiko ①',sen:'Photo: Keiko (1)',ballot:'req',assembly:true,tags:[]},
+ {id:'d2-qp-soken-1',day:2,area:'photo',s:'13:00',e:'13:30',cat:'activity',jp:'クイックフォトセッション：祖堅正慶＆マイケル・クリストファー・コージ・フォックス ①',en:'Quick Photo Session: Masayoshi Soken & Michael-Christopher Koji Fox (1)',sjp:'フォト：祖堅＆コージ ①',sen:'Photo: Soken & Koji Fox (1)',ballot:'req',assembly:true,tags:[]},
+ {id:'d2-qp-keiko-2',day:2,area:'photo',s:'14:00',e:'14:30',cat:'activity',jp:'クイックフォトセッション：Keiko ②',en:'Quick Photo Session: Keiko (2)',sjp:'フォト：Keiko ②',sen:'Photo: Keiko (2)',ballot:'req',assembly:true,tags:[]},
+ {id:'d2-qp-soken-2',day:2,area:'photo',s:'15:00',e:'15:30',cat:'activity',jp:'クイックフォトセッション：祖堅正慶＆マイケル・クリストファー・コージ・フォックス ②',en:'Quick Photo Session: Masayoshi Soken & Michael-Christopher Koji Fox (2)',sjp:'フォト：祖堅＆コージ ②',sen:'Photo: Soken & Koji Fox (2)',ballot:'req',assembly:true,tags:[]},
+ {id:'d2-qp-keiko-3',day:2,area:'photo',s:'16:00',e:'16:30',cat:'activity',jp:'クイックフォトセッション：Keiko ③',en:'Quick Photo Session: Keiko (3)',sjp:'フォト：Keiko ③',sen:'Photo: Keiko (3)',ballot:'req',assembly:true,tags:[]},
+
+ {id:'d1-cloak',day:1,area:'xwave',s:'08:00',e:'22:00',cat:'service',jp:'コスプレ更衣室・クローク',en:'Cosplay changing room & cloakroom',ballot:'book',pay:'req',price:['各¥1,140（税込）／日','¥1,140 each per day'],
+  djp:'更衣室は最終受付21:30、1回60分まで（予約時刻以降13:00〜21:30は何度でも）。クロークの預け入れは19:00まで、返却は21:45まで。',den:'Changing room: last entry 21:30, max 60 min per visit (re-entry allowed 13:00–21:30 after your booked slot). Cloak: drop-off until 19:00, pick-up until 21:45.',tags:[]},
+ {id:'d2-cloak',day:2,area:'xwave',s:'08:00',e:'22:00',cat:'service',jp:'コスプレ更衣室・クローク',en:'Cosplay changing room & cloakroom',ballot:'book',pay:'req',price:['各¥1,140（税込）／日','¥1,140 each per day'],
+  djp:'更衣室は最終受付21:30、1回60分まで（予約時刻以降13:00〜21:30は何度でも）。クロークの預け入れは19:00まで、返却は21:45まで。',den:'Changing room: last entry 21:30, max 60 min per visit (re-entry allowed 13:00–21:30 after your booked slot). Cloak: drop-off until 19:00, pick-up until 21:45.',tags:[]}
+];
+
+var BOOTHS=[
+ {id:'chocobo-vr',area:'zA',cat:'activity',jp:'ファイナルファンタジーXIV：チョコボレースVR',en:'FINAL FANTASY XIV: Chocobo Race VR',ballot:'opt',tags:['preview'],djp:'没入型施設「ティフォニウム」で展開予定のVRアトラクションの一部を先行体験。',den:'Early try-out of part of a VR ride coming to the Tyffonium immersive entertainment venue.'},
+ {id:'treasure',area:'zA',cat:'goods',jp:'リアルトレジャーハント',en:'Real Treasure Hunt (capsule toys)',ballot:'opt',pay:'buy',tags:[],djp:'カプセルトイコーナー。中身は回してのお楽しみ。',den:'Capsule-toy machines; what you get is a surprise.'},
+ {id:'yokero',area:'zB',cat:'activity',jp:'YOKERO -エターナルクイーン討滅戦-',en:'YOKERO: The Eternal Queen',ballot:'opt',tags:[],djp:'床を動き回る「白線」を踏まずに避け続ける体感ゲーム。',den:'A full-body game: keep dodging the white lines that sweep across the floor.'},
+ {id:'nicehead',area:'zB',cat:'activity',jp:'ナイスヘッド・ガーデン',en:'Nice Head Garden',ballot:'opt',tags:[],djp:'ホッケー、水鉄砲、ボウリングなどのミニゲームが並ぶ遊び場。',den:'A games corner with hockey, water guns, bowling and more.'},
+ {id:'allagan',area:'zB',cat:'activity',jp:'古のアラグの操作盤',en:'The Ancient Allagan Control Panel',tags:[],djp:'2人で息を合わせて操作する巨大コントローラーでタイタン討伐に挑戦。',den:'A giant two-player controller; work together to bring down Titan.'},
+ {id:'mtg',area:'zB',cat:'activity',jp:'『マジック：ザ・ギャザリング ―― FINAL FANTASY』カード体験＆展示ブース',en:'Magic: The Gathering — FINAL FANTASY play & exhibit booth',ballot:'opt',tags:[],djp:'体験プレイ、900枚以上のカード展示、カード型フォトスポット、大判カードギャラリー。',den:'Demo games, a display of 900+ cards, a card-shaped photo spot and a large-format card gallery.'},
+ {id:'ff7r',area:'zB',cat:'exhibit',jp:'ファイナルファンタジーVII リメイクシリーズ',en:'FINAL FANTASY VII Remake series',tags:[],djp:'バスターソードと「ハーディ＝デイトナ」と一緒に撮影できるフォトスポット。',den:'Photo spot with the Buster Sword and the Hardy-Daytona motorcycle.'},
+ {id:'dancing',area:'zC',cat:'activity',jp:'ダンシング・グリーンと踊ろう！（Ver.1.0）',en:'Dance with Dancing Green! (Ver. 1.0)',ballot:'opt',tags:[],djp:'あなたの動きに合わせて画面のダンシング・グリーンも踊る体験型アクティビティ。',den:'Dancing Green copies your moves on screen as you dance.'},
+ {id:'instax',area:'zC',cat:'activity',jp:'instax™“チェキ”での撮影・プリント体験',en:'instax™ “cheki” photo & print',tags:[],djp:'アルカディア闘士のオリジナルフレームで撮影、またはお気に入りのスクショをチェキプリントに。',den:'Shoot with Arcadia-themed frames or print a favourite screenshot as an instant photo.'},
+ {id:'dissidia',area:'zC',cat:'exhibit',jp:'ディシディア デュエルム ファイナルファンタジー',en:'DISSIDIA DUELLUM FINAL FANTASY art display',tags:[],djp:'アビリティイラストのアートワーク展示。',den:'A display of the game\u2019s ability artwork.'},
+ {id:'catcher',area:'zD',cat:'goods',jp:'ナインズ・キャッチャー',en:'Nines Catcher (crane game)',ballot:'opt',pay:'buy',tags:['online'],djp:'新登場のクレーンゲーム。会場とオンラインの両方で遊べます。',den:'A new crane game you can play both at the venue and online.'},
+ {id:'workshop',area:'zD',cat:'goods',jp:'めざせマイスター！クラフトマンズワークショップ',en:"Craftsman's Workshop (custom tote bag)",ballot:'opt',pay:'buy',tags:['cash'],djp:'ロゴやミニオンのシートを選んでトートバッグにレイアウトし、その場でアイロンプレスして持ち帰り。',den:'Pick logo and minion transfers, lay them out on a tote bag, and take it home pressed on the spot.'},
+ {id:'perfume',area:'zD',cat:'goods',jp:'ジョブイメージ オードパルファム テスター＆販売',en:'Job-inspired eau de parfum: testers & sales',ballot:'opt',pay:'buy',tags:['cash'],djp:'各ジョブをイメージした香水を試して購入できます。',den:'Try and buy fragrances inspired by the game\u2019s jobs.'},
+ {id:'resonance',area:'zD',cat:'exhibit',jp:'ファイナルファンタジー レゾナンス',en:'FINAL FANTASY Resonance',tags:[],djp:'サボテンダーと一緒に撮れるフォトスポット。',den:'Photo spot with a Cactuar.'},
+ {id:'popcorn',area:'h13',cat:'food',jp:'出張エオルゼアカフェ in 幕張メッセ ポップコーン＆ドリンク',en:'Eorzea Cafe pop-up: popcorn & drinks',pay:'buy',tags:[],djp:'ポップコーンバケツやドリンクホルダーを販売。単品購入も可。',den:'Popcorn buckets and drink holders, also sold individually.'},
+ {id:'edda',area:'zE',cat:'activity',jp:'エッダの鞄',en:"Edda's Bag (ARG)",ballot:'opt',tags:['preview'],djp:'クリエイター集団「第四境界」とのコラボARG。あなたとキャラクターに“危険が及ぶ”かもしれない物語体験。',den:'An alternate-reality game made with the creative group Daiyon Kyokai, a story that may put you and your character “at risk”.'},
+ {id:'invaders',area:'zE',cat:'activity',jp:'F.A.T.E.『スペースインベーダー ギガマックス：トライヨラの民を守れ！』',en:'F.A.T.E. “SPACE INVADERS GIGAMAX: Defend the People of Tuliyollal!”',ballot:'opt',tags:[],djp:'アウトランナーを操作して襲来するインベーダーを迎え撃つ。',den:'Pilot the Outrunner and fend off the invader waves.'},
+ {id:'kentei',area:'zE',cat:'activity',jp:'エオルゼア検定 ～読んで…… 答えて…… 見直して……～',en:'Eorzea Certification Quiz',ballot:'opt',tags:[],djp:'これまでの冒険を思い出して全8問のテストに挑戦。',den:'An 8-question test on your adventures so far.'},
+ {id:'mahjong',area:'zE',cat:'activity',jp:'ドマ式麻雀 修練場',en:'Doman Mahjong Training Hall',ballot:'opt',tags:[],djp:'光の戦士同士で打つリアル麻雀。最高位戦所属のプロ雀士が対局を盛り上げ、初心者サポートもあり。',den:'Real-table mahjong between players, with pro players from the Saikouisen league on hand and help for beginners.'},
+ {id:'npcmeikan',area:'zE',cat:'activity',jp:'『だいたい合ってるNPC名鑑＜新生エオルゼア編＞』体験コーナー',en:'“Mostly Accurate NPC Directory (A Realm Reborn)” card game demo',ballot:'opt',tags:[],djp:'新作FFXIVカードゲームを試遊。NPCへの愛着が勝負を面白くします。',den:'Try the new FFXIV card game; the more you love the NPCs, the better it plays.'},
+ {id:'fftcg',area:'zE',cat:'activity',jp:'ファイナルファンタジー・トレーディングカード 体験コーナー',en:'FINAL FANTASY Trading Card Game demo',ballot:'opt',tags:[],djp:'ルールをじっくり学べる体験会。',den:'Learn-to-play sessions for the TCG.'},
+ {id:'quickphoto',area:'photo',cat:'activity',jp:'クイックフォトセッション',en:'Quick Photo Session',ballot:'req',tags:[],djp:'音楽ステージ出演メンバーと記念撮影。参加は事前予約（抽選）当選者のみ。',den:'Have your photo taken with the music-stage performers. Only ballot winners can take part.',sessions:true},
+ {id:'stagearea',area:'stage',cat:'stage',jp:'ステージエリア（着席エリア）',en:'Stage Area (seating)',tags:['free'],djp:'全席自由。前方から詰めて着席。プログラムごとの入れ替えなし。他のホールにも大型スクリーンと座席あり。車いすの方はスタッフへ。',den:'Unreserved seating; fill from the front. No clear-out between programs. Other halls also have big screens and seats. Wheelchair users: ask staff for the dedicated space.',sessions:true},
+ {id:'messageboard',area:'mall2f',cat:'activity',jp:'メッセージボード',en:'Message board',tags:[],djp:'来場記念のメッセージを書き込めます。',den:'Leave a message to mark your visit.'},
+ {id:'visitormap',area:'mall2f',cat:'activity',jp:'みんなでつくる！ファンフェス来場者マップ',en:'Visitor map: where did you teleport from?',tags:[],djp:'住んでいる場所にシールを貼って来場者マップを完成させよう。',den:'Put a sticker where you live to build a map of everyone who came.'},
+ {id:'atelier',area:'mall2f',cat:'activity',jp:'シュガーライオットのアトリエボード',en:"Sugar Riot's atelier board",tags:[],djp:'ボードに色を塗ったり自由に絵を描けるコーナー。',den:'Colour in or draw freely on a shared board.'},
+ {id:'galleria',area:'mall2f',cat:'exhibit',jp:'GALLERIAコラボモデル展示',en:'GALLERIA collaboration PC display',tags:[],djp:'2027年発売予定のFFXIVデザインのコラボPCを展示。',den:'FFXIV-design collaboration PCs due out in 2027.'},
+ {id:'gigacrysta',area:'mall2f',cat:'exhibit',jp:'FFXIV推奨モニター「GigaCrysta」',en:'GigaCrysta recommended monitor display',tags:[],djp:'FFXIV推奨モニターの展示（2Fモール）。',den:'Display of the FFXIV-recommended monitor (2F mall).'},
+ {id:'giftbox',area:'mall2f',cat:'service',jp:'プレゼントBOX',en:'Gift box for performers',tags:[],djp:'出演者へのプレゼント・手紙はここへ。宛名必須。飲食物・生もの・金券などは不可。',den:'Drop gifts and letters for performers here, addressed by name. No food, drinks, perishables or vouchers.'},
+ {id:'goods',area:'outdoor',cat:'goods',jp:'ファンフェスティバル オフィシャルグッズ販売',en:'Fan Festival official merchandise',ballot:'opt',pay:'buy',tags:['cash'],djp:'当日から使えるファンフェス向けグッズを多数販売。',den:'A wide range of merch, including items to use at the event itself.'},
+ {id:'kuji',area:'outdoor',cat:'goods',jp:'至天の座アルカディアくじ',en:'Arcadia prize lottery (kuji)',ballot:'opt',pay:'buy',tags:['online','cash'],djp:'至天の座アルカディアをテーマにしたスペシャルくじ。オンラインでも実施。',den:'A special prize draw themed on the Arcadia raid series; also sold online.'},
+ {id:'photospots',area:'messe',cat:'activity',jp:'フォトスポット',en:'Photo spots',tags:[],djp:'FFXIVの世界に入り込んだような撮影スポットが会場各所に。',den:'Photo sets around the venue that drop you into the world of FFXIV.'},
+ {id:'mystery',area:'aeon',cat:'activity',jp:'FFXIVリアル謎解きゲーム「ダイイングメッセージは夢のあとで」',en:'FFXIV real-world mystery game: “The Dying Message After the Dream”',tags:['noticket'],djp:'イオンモール幕張新都心が舞台。ヒルディブランドやナシュと協力して事件を解決。参加方法・料金は公式でご確認ください。',den:'Solve a case with Hildibrand and Nashu across AEON Mall. Check the official site for how to join and any fee.'},
+ {id:'fatchocobo',area:'aeon',cat:'activity',jp:'フォトスポット：でぶチョコボ（グランドコート）',en:'Photo spot: Fat Chocobo (Grand Court)',tags:['noticket'],djp:'でぶチョコボと記念撮影。',den:'Take a photo with the Fat Chocobo.'},
+ {id:'popup',area:'aeon',cat:'goods',jp:'FINAL FANTASY XIV POP UP STORE（ホビーコート）',en:'FINAL FANTASY XIV pop-up store (Hobby Court)',pay:'buy',tags:['noticket'],djp:'ファンフェス公式グッズ第1弾・第2弾や、過去イベントで販売したグッズを多数用意。',den:'Fan Fest merch waves 1 and 2 plus items first sold at earlier events.'},
+ {id:'cloak',area:'xwave',cat:'service',jp:'コスプレ更衣室・クローク',en:'Cosplay changing room & cloakroom',ballot:'book',pay:'req',price:['各¥1,140（税込）／日','¥1,140 each per day'],tags:[],djp:'スクウェア・エニックス アプリで要事前予約（先着）。予約後の変更・キャンセル不可。利用者は幕張メッセ中央ロータリー1番乗り場からシャトルバスあり。',den:'Book ahead in the SQUARE ENIX app (first come, first served); no changes or cancellations. Shuttle bus for users from Makuhari Messe Central Rotary stop 1.',sessions:true}
+];
+var FOOD=[
+ ['出張エオルゼアカフェ in 豊砂公園','Eorzea Cafe pop-up','コラボメニュー（詳細は続報）','Collab menu (details to come)'],
+ ['アニメイトカフェ 出張版','animate cafe pop-up','コラボメニュー・特典','Collab menu & bonus items'],
+ ['BBQ Freely','BBQ Freely','骨付き肉BBQ＆ホットドッグ','Bone-in BBQ & hot dogs'],
+ ['ローストチキンコオロギ','Roast Chicken Koorogi','国産ハーブ鶏のローストチキン','Roast herb-fed domestic chicken'],
+ ['M cafe','M cafe','カレーなどのカフェメニュー','Curry & café dishes'],
+ ['わがしとべっか','Wagashi to Bekka','わらび餅入りドリンク、創作和スイーツ','Warabi-mochi drinks, Japanese sweets'],
+ ['puelto pua','puelto pua','山形いも煮、オムライス、ポテト','Yamagata imoni stew, omurice, fries'],
+ ['Gabu!!','Gabu!!','ポテトフライ','French fries'],
+ ['ASLAN KEBAB','ASLAN KEBAB','ケバブ、ロングポテト','Kebab, long fries'],
+ ['福篭','Fukukago','京風たこ焼き','Kyoto-style takoyaki'],
+ ['笑う門には福来る','Warau Kado ni wa Fuku Kitaru','ご飯もの、サンド、ドリンク','Rice dishes, sandwiches, drinks'],
+ ['R.Harbor','R.Harbor','ブラジリアンチュロス','Brazilian churros'],
+ ['焼肉八そら','Yakiniku Hassora','和牛焼肉丼（にんにく醤油）','Wagyu yakiniku bowl (garlic soy)'],
+ ['j-j-KITCHEN','j-j-KITCHEN','本格ケバブ','Kebab'],
+ ['CUCCO','CUCCO','プルドチキン料理','Pulled chicken dishes'],
+ ['百合店','Yuriten','軽食','Light meals'],
+ ['ciaobella','ciaobella','ピザコーン','Pizza cones'],
+ ['Tacos Guild 駒沢','Tacos Guild Komazawa','沖縄タコス','Okinawa-style tacos'],
+ ['Kero','Kero','心と体が温まる家庭的な料理','Warming comfort food'],
+ ['堂の浦 鳴門本店','Dounoura Naruto','鳴門鯛の塩らぁ麺','Naruto sea bream shio ramen'],
+ ['la kasseria','la kasseria','本格ケバブ','Kebab'],
+ ['kitchencar iroha','kitchencar iroha','ホットドッグ、塩タン串など','Hot dogs, salted beef-tongue skewers'],
+ ['BEER TRUCK LIQUID TANK','BEER TRUCK LIQUID TANK','クラフトビール、おつまみ、ご飯もの','Craft beer, snacks, rice dishes'],
+ ['フードトラック祠','Food Truck Hokora','現役猟師が作るタコスとドリンク','Tacos & drinks by a working hunter']
+];
+FOOD.forEach(function(f,i){
+  BOOTHS.push({id:'food-'+(i+1),area:'park',cat:'food',num:i+1,jp:(i+1)+'. '+f[0],en:f[1],pay:'buy',tags:['noticket'],djp:f[2],den:f[3]});
+});
+var BOOTH={};BOOTHS.forEach(function(b){BOOTH[b.id]=b;});
+var EVENT={};EVENTS.forEach(function(e){EVENT[e.id]=e;});
+
+/* ---------- badges ---------- */
+function badges(x,compact){
+  var h='';
+  if(x.ballot==='req') h+='<span class="bdg ballot req" title="抽選必須 · Ballot required">抽選必須'+(compact?'':' · Ballot required')+'</span>';
+  else if(x.ballot==='opt') h+='<span class="bdg ballot" title="抽選予約あり（任意）· Optional ballot">抽選'+(compact?'':' · Optional ballot')+'</span>';
+  else if(x.ballot==='book') h+='<span class="bdg ballot req" title="要事前予約 · Booking required">要予約'+(compact?'':' · Booking required')+'</span>';
+  if(x.pay==='req') h+='<span class="bdg pay req" title="追加料金 · Extra fee">¥ 有料'+(compact?'':' · Extra fee')+'</span>';
+  else if(x.pay==='stream') h+='<span class="bdg pay" title="配信は有料 · Paid stream">¥ 配信'+(compact?'':' · Paid stream')+'</span>';
+  else if(x.pay==='buy') h+='<span class="bdg pay" title="購入時に支払い · Pay for purchases">¥'+(compact?'':' 購入 · Purchases')+'</span>';
+  return h?'<span class="bdgs">'+h+'</span>':'';
+}
+function legendHTML(){
+  var h='';
+  Object.keys(CATS).forEach(function(k){h+='<span><i class="dot" style="--c:var('+CATS[k].v+')"></i>'+CATS[k].jp+' <span style="opacity:.8">'+CATS[k].en+'</span></span>';});
+  h+='<span><span class="bdg ballot req">抽選必須</span>ballot required</span>';
+  h+='<span><span class="bdg ballot">抽選</span>optional ballot · priority queue</span>';
+  h+='<span><span class="bdg ballot req">要予約</span>booking required</span>';
+  h+='<span><span class="bdg pay req">¥ 有料</span>extra fee</span>';
+  h+='<span><span class="bdg pay">¥ 配信</span>on-site included · stream paid</span>';
+  h+='<span><span class="bdg pay">¥</span>pay for what you buy</span>';
+  return h;
+}
+
+/* ---------- state ---------- */
+var KEY='ff26tokyo-agenda-v1';
+var state={picks:{},visits:{}};
+function load(){
+  var raw=null;
+  try{raw=localStorage.getItem(KEY);}catch(e){}
+  try{ if(raw){var s=JSON.parse(raw); if(s&&s.picks) state=s;} else if(window.__SEED_AGENDA){state=window.__SEED_AGENDA;} }catch(e){}
+  state.picks=state.picks||{}; state.visits=state.visits||{};
+  Object.keys(state.visits).forEach(function(id){var v=state.visits[id]; if(v&&v.s){var c=clampVisit(v); v.s=c.s; v.dur=c.dur;}});
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){} updateCount();}
+function isOn(id){return EVENT[id]?!!state.picks[id]:!!state.visits[id];}
+function toggle(id){
+  if(EVENT[id]){ if(state.picks[id]) delete state.picks[id]; else state.picks[id]=true; }
+  else { if(state.visits[id]) delete state.visits[id]; else state.visits[id]={day:null,s:null,dur:30}; }
+  save(); rerender();
+  var on=isOn(id);
+  toast(on?'マイアジェンダに追加しました':'マイアジェンダから外しました', on?'Added to My agenda':'Removed from My agenda');
+}
+function updateCount(){$('agenda-count').textContent=Object.keys(state.picks).length+Object.keys(state.visits).length;}
+
+/* ---------- time / now ---------- */
+function jstNow(){var d=new Date(Date.now()+9*3600e3);return {date:d.toISOString().slice(0,10),min:d.getUTCHours()*60+d.getUTCMinutes()};}
+var ui={day:1,agDay:1,hl:'all',cols:{},view:'schedule',sel:null};
+COLS.forEach(function(c){ui.cols[c.id]=true;});
+(function(){var n=jstNow(); if(n.date==='2026-11-01') {ui.day=2;ui.agDay=2;}})();
+
+function countdown(){
+  var start=Date.UTC(2026,9,31,0,0); // 09:00 JST
+  var end=Date.UTC(2026,10,1,12,0);  // 21:00 JST Nov 1
+  var now=Date.now(), h;
+  if(now<start){var d=Math.ceil((start-now)/86400e3); h='<div class="num mono">'+d+'</div><div class="lbl">日後に開幕<span class="en">'+(d===1?'day':'days')+' to doors open</span></div>';}
+  else if(now<end){var n=jstNow(); h='<div class="num">開催中</div><div class="lbl">'+(n.date==='2026-10-31'?'DAY 1':'DAY 2')+'<span class="en">The festival is on now</span></div>';}
+  else h='<div class="num">終了</div><div class="lbl">ありがとうございました<span class="en">The festival has ended</span></div>';
+  $('countdown').innerHTML=h;
+}
+function ballotNotice(){
+  var now=Date.now(), close=Date.UTC(2026,9,25,14,59), result=Date.UTC(2026,9,28,0,0);
+  var jp,en;
+  if(now<=close){jp='<b>コンテンツ事前予約（抽選）受付中：10/21（水）〜10/25（日）23:59 JST。</b>当選連絡は10/28頃メールで。応募は「スクウェア・エニックス アプリ」から、第5希望まで、当選は1人1枠。クイックフォトセッションは抽選当選が必須、他は予約なしでも参加可（予約者は優先列）。';
+    en='Content reservation ballot open Oct 21 – Oct 25, 23:59 JST; results by email around Oct 28. Apply in the SQUARE ENIX app with up to 5 choices; one win per person. The Quick Photo Session needs a winning ballot; everything else is open without one, and winners get a priority queue.';}
+  else if(now<result){jp='<b>抽選受付は終了しました。</b>当選連絡は10/28頃メールで届く予定です。';en='The ballot has closed. Results arrive by email around Oct 28.';}
+  else {jp='<b>抽選結果は発表済みです。</b>当選者は集合時刻から30分以内に予約者用待機列へ（アプリのチケット提示、スクショ不可）。';en='Ballot results are out. Winners join the reservation queue within 30 min of their assembly time and show the ticket in the app; screenshots are not accepted.';}
+  $('ballot-notice').innerHTML='<span class="bdg ballot req" style="flex:none;margin-top:2px">抽選</span><span>'+jp+'<span class="en">'+en+'</span></span>';
+}
+
+/* ---------- schedule view ---------- */
+var GS=8*60, GE=22*60;
+function px(min){return (min-GS)*(72/60);}
+function hlMatch(x){ if(ui.hl==='ballot') return !!x.ballot; if(ui.hl==='pay') return !!x.pay; return true; }
+
+function renderDaySeg(elId,key){
+  var h='';DAYS.forEach(function(d){h+='<button type="button" aria-pressed="'+(ui[key]===d.n)+'" data-day="'+d.n+'">'+B(d.jp,d.en)+'</button>';});
+  var el=$(elId); el.innerHTML=h;
+  el.querySelectorAll('button').forEach(function(b){b.onclick=function(){ui[key]=+b.dataset.day; rerender();};});
+}
+function renderSchedule(){
+  renderDaySeg('day-seg','day');
+  var ch='';COLS.forEach(function(c){ch+='<button type="button" class="fchip" aria-pressed="'+ui.cols[c.id]+'" data-col="'+c.id+'">'+B(c.jp,c.en,'row')+'</button>';});
+  $('col-chips').innerHTML=ch;
+  $('col-chips').querySelectorAll('button').forEach(function(b){b.onclick=function(){
+    var id=b.dataset.col; var n=Object.keys(ui.cols).filter(function(k){return ui.cols[k];}).length;
+    if(ui.cols[id]&&n===1) return; ui.cols[id]=!ui.cols[id]; renderSchedule();};});
+  var hl=[['all','すべて','All'],['ballot','抽選・予約','Ballot / booking'],['pay','有料','Extra payment']];
+  $('hl-seg').innerHTML=hl.map(function(o){return '<button type="button" aria-pressed="'+(ui.hl===o[0])+'" data-hl="'+o[0]+'">'+B(o[1],o[2])+'</button>';}).join('');
+  $('hl-seg').querySelectorAll('button').forEach(function(b){b.onclick=function(){ui.hl=b.dataset.hl;renderSchedule();};});
+
+  var cols=COLS.filter(function(c){return ui.cols[c.id];});
+  var H=px(GE);
+  var head='<div class="shead"><div class="corner mono">JST</div>';
+  cols.forEach(function(c){head+='<button type="button" class="colh" data-area="'+c.area+'"><span class="jp">'+c.jp+'</span><span class="sub">'+c.en+' · '+c.sjp+' / '+c.sen+'</span></button>';});
+  head+='</div>';
+  var body='<div class="sbody"><div class="gutter" style="height:'+H+'px">';
+  for(var t=GS;t<=GE;t+=60){ if(t>GS) body+='<span class="mono" style="top:'+px(t)+'px">'+T(t)+'</span>'; }
+  body+='</div>';
+  var day=DAYS[ui.day-1], now=jstNow();
+  cols.forEach(function(c){
+    body+='<div class="col" style="height:'+H+'px">';
+    if(c.id!=='xwave'){
+      body+='<div class="closed" style="top:0;height:'+px(9*60)+'px"></div><div class="closed" style="top:'+px(21*60)+'px;bottom:0"></div>';
+      body+='<div class="mark" style="top:'+px(9*60)+'px"><b>09:00 開場 Doors</b></div><div class="mark" style="top:'+px(21*60)+'px"><b>21:00 終了 Close</b></div>';
+    }
+    var evs=EVENTS.filter(function(e){return e.day===ui.day && AREAS[e.area].col===c.id;});
+    evs.forEach(function(e){body+=evBlock(e,px(M(e.s)),px(M(e.e))-px(M(e.s)));});
+    var bs=BOOTHS.filter(function(b){return AREAS[b.area].col===c.id && !b.sessions;});
+    if(bs.length){
+      var top=px(9*60)+6, hgt=px(21*60)-px(9*60)-12;
+      if(c.id==='stage'){top=px(9*60)+4;hgt=px(10*60+20)-top;}
+      var hdr;
+      if(c.id==='aeon'||c.id==='park') hdr='<b>チケット不要</b> · 営業時間は公式で確認<br>No ticket needed · check official hours';
+      else hdr='<b>終日 09:00–21:00</b> · 抽選予約者の集合枠 11:00–19:30（30分毎）<br>All day · ballot-winner slots 11:00–19:30, every 30 min';
+      body+='<div class="band" style="top:'+top+'px;height:'+hgt+'px"><div class="band-h">'+hdr+'</div>';
+      bs.forEach(function(b){body+=chip(b);});
+      body+='<div class="more" aria-hidden="true">'+bs.length+' 件 · scroll ↓</div></div>';
+    }
+    if(now.date===day.date && now.min>=GS && now.min<=GE) body+='<div class="nowline" style="top:'+px(now.min)+'px"></div>';
+    body+='</div>';
+  });
+  body+='</div>';
+  var el=$('sched'); el.style.setProperty('--n',cols.length);
+  el.innerHTML='<div class="sgrid">'+head+body+'</div>';
+  wireBlocks(el);
+  el.querySelectorAll('.band').forEach(function(b){
+    var m=b.querySelector('.more'); if(!m) return;
+    var upd=function(){m.hidden=(b.scrollTop+b.clientHeight>=b.scrollHeight-4);};
+    upd(); b.addEventListener('scroll',upd,{passive:true});
+  });
+  el.querySelectorAll('.colh').forEach(function(b){b.onclick=function(){openArea(b.dataset.area);};});
+}
+function evBlock(e,top,h,extraCls,leftPct,widthPct,sub){
+  var c=CATS[e.cat], on=isOn(e.id), short=h<46;
+  var style='top:'+top+'px;height:'+Math.max(h,22)+'px;--c:var('+c.v+')';
+  if(leftPct!=null) style+=';left:calc('+leftPct+'% + 4px);width:calc('+widthPct+'% - 8px)';
+  var label=e.assembly?'集合 '+e.s:(e.s+'–'+e.e);
+  var showB=!short&&h>=100&&badges(e,true);
+  var avail=Math.max(h,22)-30-(showB?22:0)-(sub&&!short?14:0);
+  var lj=Math.max(1,Math.min(4,Math.floor(avail*0.62/17))), le=Math.max(1,Math.min(2,Math.floor((avail-lj*17)/14)));
+  style+=';--lj:'+lj+';--le:'+le;
+  var full=e.jp+' / '+e.en+' ('+label+')';
+  return '<div class="ev'+(on?' on':'')+(short?' short':'')+(hlMatch(e)?'':' dim')+(extraCls?' '+extraCls:'')+'" style="'+style+'">'+
+    '<button type="button" class="ev-main" data-open="'+e.id+'" title="'+esc(full)+'" aria-label="'+esc(full)+'"><span class="t mono">'+label+'</span>'+(sub?'<span class="t2">'+sub+'</span>':'')+'<span class="jp">'+esc(e.sjp||e.jp)+'</span>'+(short?'':'<span class="en">'+esc(e.sen||e.en)+'</span>')+(showB?badges(e,true):'')+'</button>'+
+    '<button type="button" class="star" data-star="'+e.id+'" aria-pressed="'+on+'" aria-label="マイアジェンダ · My agenda">'+(on?'★':'☆')+'</button></div>';
+}
+function chip(b){
+  var c=CATS[b.cat], on=isOn(b.id);
+  return '<button type="button" class="bchip'+(on?' on':'')+(hlMatch(b)?'':' dim')+'" data-open="'+b.id+'" title="'+esc(b.jp+' / '+b.en)+'" style="--c:var('+c.v+')"><i class="dot"></i><span class="nm">'+B(esc(b.jp),esc(b.en))+badges(b,true)+'</span>'+(on?'<span aria-label="in agenda" style="color:var(--gold)">★</span>':'')+'</button>';
+}
+function wireBlocks(root){
+  root.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){openItem(b.dataset.open);};});
+  root.querySelectorAll('[data-star]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();toggle(b.dataset.star);};});
+}
+
+/* ---------- map view ---------- */
+function mapSVG(){
+  function txt(x,y,jp,en,size,anchor){anchor=anchor||'start';size=size||15;return '<text x="'+x+'" y="'+y+'" text-anchor="'+anchor+'" font-size="'+size+'" font-weight="700" fill="var(--ink)" font-family="var(--f-body)">'+jp+'</text>'+(en?'<text x="'+x+'" y="'+(y+size*0.95)+'" text-anchor="'+anchor+'" font-size="'+(size*0.72)+'" fill="var(--muted)" font-family="var(--f-body)">'+en+'</text>':'');}
+  function area(id,x,y,w,h,jp,en,size,extra,en2){
+    var n=countIn(id);
+    var l2=en2?'<text x="'+(x+10)+'" y="'+(y+22+(size||15)*1.75)+'" font-size="'+((size||15)*0.72)+'" fill="var(--muted)" font-family="var(--f-body)">'+en2+'</text>':'';
+    return '<g class="area'+(ui.sel===id?' sel':'')+'" data-area="'+id+'" tabindex="0" role="button" aria-label="'+jp+' '+en+(en2?' '+en2:'')+'"><rect class="fill" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>'+txt(x+10,y+22,jp,en,size)+l2+(extra||'')+
+      (n?'<circle cx="'+(x+w-16)+'" cy="'+(y+h-16)+'" r="11" fill="var(--gold)"/><text x="'+(x+w-16)+'" y="'+(y+h-11.5)+'" text-anchor="middle" font-size="12" font-weight="700" fill="var(--surface)" font-family="var(--f-mono)">'+n+'</text>':'')+'</g>';
+  }
+  var s='<svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="会場簡略図 Venue schematic">';
+  s+='<rect x="0" y="0" width="1000" height="640" fill="var(--surface-2)"/>';
+  // Messe building outline
+  s+='<rect x="24" y="24" width="660" height="400" rx="14" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 5"/>';
+  s+=txt(36,444,'幕張メッセ 国際展示場','Makuhari Messe Exhibition Halls',13);
+  s+=area('mall2f',40,40,628,58,'2F 中央モール','2F Central Mall · message boards, displays, gift box',15);
+  // hall shells
+  s+='<rect x="40" y="112" width="300" height="270" rx="10" fill="none" stroke="var(--line)" stroke-width="2"/>';
+  s+='<text x="48" y="130" font-size="12" fill="var(--muted)" font-family="var(--f-mono)">HALL 1–3</text>';
+  s+=area('zA',50,138,136,110,'エリア A','Zone A');
+  s+=area('zB',194,138,136,110,'エリア B','Zone B');
+  s+=area('zC',50,256,136,110,'エリア C','Zone C');
+  s+=area('zD',194,256,136,110,'エリア D','Zone D');
+  s+='<rect x="350" y="112" width="220" height="270" rx="10" fill="none" stroke="var(--line)" stroke-width="2"/>';
+  s+='<text x="358" y="130" font-size="12" fill="var(--muted)" font-family="var(--f-mono)">HALL 4–6</text>';
+  var seat='<rect x="374" y="186" width="148" height="14" rx="3" fill="var(--c-stage)"/><text x="448" y="197" text-anchor="middle" font-size="10" font-weight="700" fill="var(--surface)" font-family="var(--f-body)">ステージ STAGE</text>'+
+    '<rect x="374" y="206" width="148" height="70" rx="4" fill="none" stroke="var(--c-stage)" stroke-width="1" stroke-dasharray="3 3"/>';
+  for(var sr=0;sr<5;sr++){seat+='<line x1="382" x2="514" y1="'+(214+sr*9)+'" y2="'+(214+sr*9)+'" stroke="var(--c-stage)" stroke-opacity=".45" stroke-width="3" stroke-dasharray="4 2"/>';}
+  seat+='<text x="448" y="262" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="var(--f-body)">着席エリア · 全席自由</text><text x="448" y="273" text-anchor="middle" font-size="9" fill="var(--muted)" font-family="var(--f-body)">Seated area · unreserved</text>';
+  s+=area('stage',360,138,200,160,'ステージエリア','Stage Area',16,seat);
+  s+=area('photo',360,306,200,60,'クイックフォト','Quick Photo Session',14);
+  s+='<rect x="580" y="112" width="90" height="270" rx="10" fill="none" stroke="var(--line)" stroke-width="2"/>';
+  s+='<text x="588" y="130" font-size="12" fill="var(--muted)" font-family="var(--f-mono)">HALL 7</text>';
+  s+=area('zE',588,138,74,228,'エリア E','Zone E',14);
+  // outdoor
+  s+=area('outdoor',700,112,120,270,'屋外展示場','Outdoor area',14,'','Goods · kuji');
+  // rotary + shuttle to cross wave
+  s+='<circle cx="330" cy="470" r="9" fill="var(--aether)"/>'+txt(346,466,'中央ロータリー 1番乗り場','Central Rotary · shuttle stop 1',12);
+  s+='<path d="M330 479 C 300 520, 260 540, 240 560" fill="none" stroke="var(--aether)" stroke-width="2" stroke-dasharray="5 5"/>';
+  s+='<text x="262" y="520" font-size="11" fill="var(--aether)" font-family="var(--f-body)" transform="rotate(-38 262 520)">シャトルバス Shuttle</text>';
+  s+=area('xwave',40,548,240,72,'クロス・ウェーブ幕張','Cross Wave Makuhari',14,'','Cosplay room · cloak');
+  // footbridge to AEON / park
+  s+='<path d="M684 70 L 840 70" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>';
+  s+='<text x="700" y="62" font-size="11" fill="var(--muted)" font-family="var(--f-body)">歩道橋 Footbridge →</text>';
+  s+=area('aeon',846,40,138,190,'イオンモール','AEON Mall',14);
+  s+='<text x="856" y="102" font-size="11" fill="var(--muted)" font-family="var(--f-body)">グランドコート</text><text x="856" y="116" font-size="10" fill="var(--muted)" font-family="var(--f-body)">Grand Court</text>';
+  s+='<text x="856" y="140" font-size="11" fill="var(--muted)" font-family="var(--f-body)">ホビーコート</text><text x="856" y="154" font-size="10" fill="var(--muted)" font-family="var(--f-body)">Hobby Court</text>';
+  s+='<text x="856" y="178" font-size="11" fill="var(--muted)" font-family="var(--f-body)">謎解きゲーム</text><text x="856" y="192" font-size="10" fill="var(--muted)" font-family="var(--f-body)">Mystery game</text>';
+  s+=area('park',846,244,138,376,'豊砂公園','Toyosuna Park',14);
+  // food stall dots
+  for(var i=0;i<24;i++){
+    var col=i%4,row=Math.floor(i/4), cx=870+col*31, cy=300+row*50, id='food-'+(i+1), on=isOn(id);
+    s+='<g class="area" data-open="'+id+'" tabindex="0" role="button" aria-label="'+esc(BOOTHS.filter(function(b){return b.id===id;})[0].jp)+'"><circle cx="'+cx+'" cy="'+cy+'" r="12" fill="'+(on?'var(--gold)':'var(--surface)')+'" stroke="var(--c-food)" stroke-width="1.5"/><text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(on?'var(--surface)':'var(--c-food)')+'" font-family="var(--f-mono)">'+(i+1)+'</text></g>';
+  }
+  s+='</svg>';
+  return s;
+}
+function countIn(areaId){
+  var n=0;
+  Object.keys(state.picks).forEach(function(id){var e=EVENT[id]; if(e&&e.area===areaId) n++;});
+  Object.keys(state.visits).forEach(function(id){var b=BOOTH[id]; if(b&&b.area===areaId) n++;});
+  return n;
+}
+var MAP_ORDER=['stage','photo','zA','zB','zC','zD','h13','zE','mall2f','outdoor','messe','aeon','park','xwave'];
+function renderMap(){
+  $('legend-map').innerHTML=legendHTML();
+  $('map-svg').innerHTML=mapSVG();
+  var h='';
+  MAP_ORDER.forEach(function(a){
+    var A=AREAS[a], nb=BOOTHS.filter(function(b){return b.area===a;}).length, ne=EVENTS.filter(function(e){return e.area===a;}).length;
+    var meta=(ne?ne+' 枠 sessions':'')+(ne&&nb?' · ':'')+(nb?nb+' 件 booths':'');
+    h+='<div class="acard'+(ui.sel===a?' sel':'')+'"><button type="button" data-area="'+a+'">'+B(A.jp,A.en+' · '+A.where[1])+'<span class="meta">'+meta+(countIn(a)?'<br><span style="color:var(--gold)">★ '+countIn(a)+'</span>':'')+'</span></button></div>';
+  });
+  $('area-list').innerHTML=h;
+  document.querySelectorAll('#view-map [data-area]').forEach(function(g){
+    g.onclick=function(){openArea(g.dataset.area);};
+    g.onkeydown=function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openArea(g.dataset.area);}};
+  });
+  document.querySelectorAll('#view-map [data-open]').forEach(function(g){
+    g.onclick=function(){openItem(g.dataset.open);};
+    g.onkeydown=function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openItem(g.dataset.open);}};
+  });
+}
+
+/* ---------- agenda ---------- */
+function agendaItems(day){
+  var out=[];
+  Object.keys(state.picks).forEach(function(id){var e=EVENT[id]; if(e&&e.day===day) out.push({id:id,s:M(e.s),e:M(e.e),x:e});});
+  Object.keys(state.visits).forEach(function(id){var v=state.visits[id],b=BOOTH[id]; if(b&&v.day===day&&v.s){var c=clampVisit({s:v.s,dur:v.dur});out.push({id:id,s:M(c.s),e:M(c.s)+c.dur,x:b,visit:true});}});
+  out.sort(function(a,b){return a.s-b.s||a.e-b.e;});
+  out.forEach(function(it){it.clash=out.some(function(o){return o!==it && o.s<it.e && it.s<o.e;});});
+  return out;
+}
+function lanes(items){
+  var clusters=[],cur=null,end=-1;
+  items.forEach(function(it){ if(!cur||it.s>=end){cur=[];clusters.push(cur);end=it.e;} else end=Math.max(end,it.e); cur.push(it); });
+  clusters.forEach(function(cl){var lane=[];cl.forEach(function(it){var i=0;while(lane[i]!=null&&lane[i]>it.s)i++;lane[i]=it.e;it.lane=i;});cl.forEach(function(it){it.lanes=lane.length;});});
+}
+function renderAgenda(){
+  renderDaySeg('ag-day-seg','agDay');
+  var items=agendaItems(ui.agDay);
+  var savedHl=ui.hl; ui.hl='all';
+  var clashes=items.filter(function(i){return i.clash;}).length;
+  var nb=items.filter(function(i){return i.x.ballot;}).length, np=items.filter(function(i){return i.x.pay;}).length;
+  var sum='<span class="pill">'+items.length+' 件 · items</span>';
+  if(clashes) sum+='<span class="pill warn">'+clashes+' 件が重複 · overlapping</span>';
+  if(nb) sum+='<span class="pill">'+nb+' 件 抽選・予約 · ballot/booking</span>';
+  if(np) sum+='<span class="pill">'+np+' 件 有料 · involves payment</span>';
+  $('ag-sum').innerHTML=sum;
+  if(!items.length){
+    $('ag-tl').innerHTML='<div class="empty"><b>この日の予定はまだありません</b><br>Nothing planned for this day yet.<br><br>スケジュールの☆で追加するか、ブースを追加して右の欄で時間を設定してください。<br>Tap ☆ on the Schedule, or add booths and give them a time on the right.</div>';
+  } else {
+    lanes(items);
+    var lo=Math.max(GS,Math.floor(Math.min.apply(null,items.map(function(i){return i.s;}))/60)*60-60);
+    var hi=Math.min(GE,Math.ceil(Math.max.apply(null,items.map(function(i){return i.e;}))/60)*60+60);
+    if(hi-lo<240) hi=Math.min(GE,lo+240);
+    var k=72/60, H=(hi-lo)*k;
+    var g='<div class="gutter" style="height:'+H+'px">';
+    for(var t=lo+60;t<hi;t+=60) g+='<span class="mono" style="top:'+((t-lo)*k)+'px">'+T(t)+'</span>';
+    g+='</div>';
+    var lane='<div class="lane" style="height:'+H+'px">';
+    items.forEach(function(it){
+      var top=(it.s-lo)*k, h=(it.e-it.s)*k, w=100/it.lanes, l=it.lane*w;
+      var x=it.x, fake={id:it.id,cat:x.cat,jp:x.jp,en:x.en,sjp:x.sjp,sen:x.sen,s:T(it.s),e:T(it.e),assembly:x.assembly,ballot:x.ballot,pay:x.pay};
+      var sub=(it.clash?'<span class="clash-tag">重複 Overlap</span>':'')+(it.visit?esc(AREAS[x.area].jp+' · '+AREAS[x.area].en):'');
+      lane+=evBlock(fake,top,h,it.clash?'clash':'',l,w,sub||null);
+    });
+    if(OPEN>lo&&OPEN<hi) lane+='<div class="mark" style="top:'+((OPEN-lo)*k)+'px"><b>09:00 開場 Doors</b></div>';
+    if(CLOSE>lo&&CLOSE<hi) lane+='<div class="closed" style="top:'+((CLOSE-lo)*k)+'px;bottom:0"></div><div class="mark" style="top:'+((CLOSE-lo)*k)+'px"><b>21:00 閉場 Doors close</b></div>';
+    var now=jstNow(); if(now.date===DAYS[ui.agDay-1].date&&now.min>=lo&&now.min<=hi) lane+='<div class="nowline" style="top:'+((now.min-lo)*k)+'px"></div>';
+    lane+='</div>';
+    $('ag-tl').innerHTML='<div class="tl">'+g+lane+'</div>';
+    wireBlocks($('ag-tl'));
+  }
+  ui.hl=savedHl;
+  // to-visit list
+  var ids=Object.keys(state.visits).filter(function(id){return BOOTH[id]&&!BOOTH[id].sessions||BOOTH[id];});
+  if(!ids.length){$('ag-todo').innerHTML='<div class="empty" style="padding:14px">ブースはまだ追加されていません。<br>No booths added yet. Open a booth on the Schedule or Map and choose “Add”.</div>';}
+  else{
+    var h='';
+    ids.sort(function(a,b){var va=state.visits[a],vb=state.visits[b];return (va.day||9)-(vb.day||9)||String(va.s||'99').localeCompare(String(vb.s||'99'));});
+    ids.forEach(function(id){h+=todoRow(id);});
+    $('ag-todo').innerHTML=h;
+    wireTodo($('ag-todo'));
+  }
+}
+/* booth visits must sit inside festival hours: 09:00 open, 21:00 doors close */
+var OPEN=9*60, CLOSE=21*60, DURS=[15,30,45,60,90,120];
+function clampVisit(v){
+  var out={s:v.s,dur:+v.dur||30};
+  if(!out.s) return out;
+  var s=Math.min(Math.max(M(out.s),OPEN),CLOSE-15);
+  out.s=T(s);
+  var max=CLOSE-s;
+  if(out.dur>max){ var fit=DURS.filter(function(d){return d<=max;}); out.dur=fit.length?fit[fit.length-1]:max; }
+  return out;
+}
+function timeOptions(sel){var h='<option value="">時間未定 · No time</option>';for(var t=OPEN;t<=CLOSE-15;t+=15){var v=T(t);h+='<option value="'+v+'"'+(sel===v?' selected':'')+'>'+v+'</option>';}return h;}
+function todoRow(id){
+  var b=BOOTH[id],v=state.visits[id];
+  return '<div class="todo-item" data-id="'+id+'"><div>'+B(esc(b.jp),esc(b.en))+'<div class="loc">'+AREAS[b.area].jp+' · '+AREAS[b.area].en+'</div>'+badges(b,true)+'</div>'+
+    '<button type="button" class="btn sm ghost" data-rm="'+id+'"><span class="jp">外す</span><span class="en">Remove</span></button>'+
+    '<div class="ctl">'+timePicker(id,v)+'</div></div>';
+}
+function timePicker(id,v){
+  return '<label class="timepick">日 Day <select data-f="day" data-id="'+id+'"><option value="">—</option><option value="1"'+(v.day===1?' selected':'')+'>DAY 1 10/31</option><option value="2"'+(v.day===2?' selected':'')+'>DAY 2 11/1</option></select></label>'+
+   '<label class="timepick">開始 Start <select data-f="s" data-id="'+id+'">'+timeOptions(v.s)+'</select></label>'+
+   '<label class="timepick">所要 Length <select data-f="dur" data-id="'+id+'">'+DURS.map(function(d){
+     var over=v.s&&M(v.s)+d>CLOSE;
+     return '<option value="'+d+'"'+(+v.dur===d?' selected':'')+(over?' disabled':'')+'>'+d+'分 min'+(over?'（21時以降 · past 21:00）':'')+'</option>';}).join('')+'</select></label>'+
+   (v.s?'<span class="lbl-s">終了 '+T(M(v.s)+(+v.dur||30))+' · ends · 閉場21:00 doors close</span>':'<span class="lbl-s">09:00–21:00 の間で設定 · Pick a time between 09:00 and 21:00</span>');
+}
+function wireTodo(root){
+  root.querySelectorAll('select[data-f]').forEach(function(s){s.onchange=function(){
+    var v=state.visits[s.dataset.id]; if(!v) return; var f=s.dataset.f;
+    if(f==='day') v.day=s.value?+s.value:null; else if(f==='s') v.s=s.value||null; else v.dur=+s.value;
+    if(v.s&&!v.day) v.day=ui.agDay;
+    var before=+v.dur||30, c=clampVisit(v); v.s=c.s; v.dur=c.dur;
+    save(); rerender(true);
+    if(c.dur<before) toast('21:00の閉場に合わせて所要時間を'+c.dur+'分にしました','Length shortened to '+c.dur+' min so it ends by the 21:00 close');
+    var sheetPick=$('overlay-root').querySelector('.todo-item[data-id="'+s.dataset.id+'"] .ctl');
+    if(sheetPick){sheetPick.innerHTML=timePicker(s.dataset.id,v);wireTodo($('overlay-root'));}
+  };});
+  root.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){toggle(b.dataset.rm);};});
+}
+
+/* ---------- detail sheet ---------- */
+var lastFocus=null;
+function closeSheet(){ $('overlay-root').innerHTML=''; document.removeEventListener('keydown',escClose); if(lastFocus&&lastFocus.focus) try{lastFocus.focus();}catch(e){} }
+function escClose(e){if(e.key==='Escape') closeSheet();}
+function openSheet(inner){
+  lastFocus=document.activeElement;
+  $('overlay-root').innerHTML='<div class="scrim" data-close></div><aside class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">'+inner+'</aside>';
+  $('overlay-root').querySelectorAll('[data-close]').forEach(function(x){x.onclick=closeSheet;});
+  document.addEventListener('keydown',escClose);
+  var f=$('overlay-root').querySelector('.x'); if(f) f.focus();
+}
+function sheetHead(catKey,where){
+  var c=CATS[catKey];
+  return '<div class="sheet-h"><span class="bdg neutral" style="--c:var('+c.v+');color:var('+c.v+');border-color:var('+c.v+')">'+c.jp+' · '+c.en+'</span>'+(where?'<span class="lbl-s">'+where+'</span>':'')+'<button type="button" class="btn sm ghost x" data-close><span class="jp">閉じる</span><span class="en">Close</span></button></div>';
+}
+function ballotCallout(x){
+  if(x.ballot==='req') return '<div class="callout ballot"><b>抽選必須</b>：事前予約（抽選）に当選した方のみ参加できます。応募は10/21〜10/25 23:59、スクウェア・エニックス アプリから。<span class="en">Ballot required: only ballot winners can take part. Apply Oct 21 – Oct 25 23:59 JST in the SQUARE ENIX app.</span></div>';
+  if(x.ballot==='opt') return '<div class="callout ballot"><b>抽選予約あり（任意）</b>：予約なしでも参加可。当選者は予約者用の優先列に並べます（集合時刻から30分以内）。<span class="en">Optional ballot: you can join without one; winners use a priority queue (arrive within 30 min of the assembly time).</span></div>';
+  if(x.ballot==='book') return '<div class="callout ballot"><b>要事前予約（先着）</b>：スクウェア・エニックス アプリで予約。変更・キャンセル不可。<span class="en">Booking required, first come first served, in the SQUARE ENIX app. No changes or cancellations.</span></div>';
+  return '';
+}
+function payCallout(x){
+  if(x.pay==='req') return '<div class="callout pay"><b>追加料金</b>：'+(x.price?x.price[0]:'有料')+'<span class="en">Extra fee: '+(x.price?x.price[1]:'paid')+'</span></div>';
+  if(x.pay==='stream') return '<div class="callout pay"><b>会場観覧はチケットに含む・配信は有料</b>：'+STREAM_PAID+'<span class="en">'+STREAM_PAID_EN+'</span></div>';
+  if(x.pay==='buy') return '<div class="callout pay"><b>購入時に支払い</b>：'+((x.tags||[]).indexOf('cash')>=0?'現金・キャッシュレスどちらも可。':'会場内の有料コンテンツは原則キャッシュレス決済のみ。')+'<span class="en">You pay for what you buy. '+((x.tags||[]).indexOf('cash')>=0?'Cash and cashless both accepted.':'Paid content inside the venue is generally cashless only.')+'</span></div>';
+  return '';
+}
+function tagList(x){var t=(x.tags||[]).filter(function(k){return k!=='cash';});if(!t.length) return '';return '<div class="bdgs">'+t.map(function(k){return '<span class="bdg neutral">'+TAGS[k][0]+' · '+TAGS[k][1]+'</span>';}).join('')+'</div>';}
+function addBtn(id){var on=isOn(id);return '<button type="button" class="btn '+(on?'':'gold')+'" data-toggle="'+id+'">'+(on?B('マイアジェンダから外す','Remove from My agenda'):B('★ マイアジェンダに追加','Add to My agenda'))+'</button>';}
+
+function openItem(id){
+  if(EVENT[id]) return openEvent(id);
+  var b=BOOTH[id]; if(!b) return;
+  if(b.sessions){ return openArea(b.area); }
+  var A=AREAS[b.area], v=state.visits[id];
+  var h=sheetHead(b.cat,A.where[0])+'<div class="sheet-b">';
+  h+='<h2 id="sheet-title">'+esc(b.jp)+'<span class="en">'+esc(b.en)+'</span></h2>';
+  h+=badges(b);
+  h+='<dl class="kv"><dt>場所<br>Where</dt><dd>'+B(A.jp+(b.num?' '+b.num+'番':''),A.en+(b.num?' stall '+b.num:'')+' · '+A.where[1])+'</dd>';
+  h+='<dt>時間<br>When</dt><dd>'+(b.area==='aeon'||b.area==='park'?B('両日 · 営業時間は公式で確認','Both days · check official hours'):B('両日 09:00–21:00（終日・時間指定なし）','Both days, 09:00–21:00, no fixed sessions'))+'</dd></dl>';
+  h+='<div class="desc"><p>'+esc(b.djp)+'</p><p class="en">'+esc(b.den)+'</p></div>';
+  h+=ballotCallout(b)+payCallout(b)+tagList(b);
+  h+='<div class="btn-row">'+addBtn(id)+'<button type="button" class="btn" data-area-go="'+b.area+'">'+B('マップで見る','Show on map')+'</button></div>';
+  if(v) h+='<div class="panel" style="padding:10px"><div class="lbl-s" style="margin-bottom:6px">訪問予定を設定 · Plan a visit time</div><div class="todo-item" style="border:0;padding:0" data-id="'+id+'"><div class="ctl">'+timePicker(id,v)+'</div></div></div>';
+  h+='</div>';
+  openSheet(h); wireSheet();
+}
+function openEvent(id){
+  var e=EVENT[id], A=AREAS[e.area], d=DAYS[e.day-1];
+  var h=sheetHead(e.cat,A.where[0])+'<div class="sheet-b">';
+  h+='<h2 id="sheet-title">'+esc(e.jp)+'<span class="en">'+esc(e.en)+'</span></h2>';
+  h+=badges(e);
+  h+='<dl class="kv"><dt>日時<br>When</dt><dd>'+B(d.jp+' <span class="mono">'+(e.assembly?'集合 '+e.s:e.s+'–'+e.e)+'</span> JST',d.en+(e.assembly?' · assembly time '+e.s+' (session length not announced)':' · '+((M(e.e)-M(e.s)))+' min'))+'</dd>';
+  h+='<dt>場所<br>Where</dt><dd>'+B(A.jp,A.en+' · '+A.where[1])+'</dd>';
+  if(e.cast) h+='<dt>出演<br>Cast</dt><dd>'+e.cast.map(function(c){return B(esc(c[0]),esc(c[1]));}).join('<br>')+'</dd>';
+  h+='</dl>';
+  if(e.djp) h+='<div class="desc"><p>'+esc(e.djp)+'</p><p class="en">'+esc(e.den)+'</p></div>';
+  if(e.assembly) h+='<div class="desc"><p>時刻は予約者の集合時刻です。待機列の状況により体験まで待つ場合があります。</p><p class="en">The time shown is the assembly time for ballot winners; you may wait in line before your turn.</p></div>';
+  h+=ballotCallout(e)+payCallout(e)+tagList(e);
+  h+='<div class="btn-row">'+addBtn(id)+'<button type="button" class="btn" data-area-go="'+e.area+'">'+B('この場所の予定','Everything at this venue')+'</button></div>';
+  h+='</div>';
+  openSheet(h); wireSheet();
+}
+function openArea(a){
+  var A=AREAS[a]; if(!A) return;
+  var evs=EVENTS.filter(function(e){return e.area===a;});
+  var bs=BOOTHS.filter(function(b){return b.area===a;});
+  var catK=evs.length?evs[0].cat:(bs.length?bs[0].cat:'service');
+  var h=sheetHead(catK,'')+'<div class="sheet-b">';
+  h+='<h2 id="sheet-title">'+A.jp+'<span class="en">'+A.en+' · '+A.where[0]+' / '+A.where[1]+'</span></h2>';
+  if(a==='stage'){
+    h+='<div class="panel" style="padding:12px"><h3 style="font-size:16px;margin-bottom:8px">座席について<span class="en">Seating</span></h3>'+
+      '<dl class="kv">'+
+      '<dt>形式<br>Type</dt><dd>'+B('全席自由（指定席なし）・座席数に限りあり','Unreserved, no assigned seats; limited number')+'</dd>'+
+      '<dt>着席<br>Filling</dt><dd>'+B('前方の席から詰めて着席','Fill seats from the front')+'</dd>'+
+      '<dt>入れ替え<br>Clear-out</dt><dd>'+B('なし。プログラムをまたいで座り続けられます','None; you can stay seated across programs')+'</dd>'+
+      '<dt>音楽ステージ<br>Concerts</dt><dd>'+B('座席は撤去されません。スペシャルライブのみその場で立ち上がり可（通路移動・前方への詰め寄りは不可）','Seats stay in place. Standing at your seat is allowed only for the Special Live; no moving into aisles or pushing forward')+'</dd>'+
+      '<dt>席取り<br>Saving seats</dt><dd>'+B('荷物を置いての長時間離席は不可。放置荷物は撤去される場合あり','Do not leave bags to hold a seat; unattended bags may be removed')+'</dd>'+
+      '<dt>持ち込み<br>Chairs</dt><dd>'+B('折りたたみ椅子は使用不可','No folding chairs')+'</dd>'+
+      '<dt>車いす<br>Wheelchairs</dt><dd>'+B('スタッフに声をかけると専用スペースへ案内','Ask staff to be shown to the dedicated space')+'</dd>'+
+      '<dt>他のホール<br>Other halls</dt><dd>'+B('ステージエリア以外のホールにも巨大スクリーンと座席スペースあり','Other halls also have giant screens with seating, so you can watch while visiting booths')+'</dd>'+
+      '</dl>'+
+      '<p class="lbl-s" style="margin:10px 0 0">ブロック単位の座席図はテキストで公開されていません。正確な配置は公式の<a href="https://fanfest.finalfantasyxiv.com/2026/jp/stages/#stage_map" target="_blank" rel="noopener">ステージエリアマップ</a>を確認してください。マップ上の座席表示はイメージです。<br>A block-by-block seat plan is only published as an image. Check the official <a href="https://fanfest.finalfantasyxiv.com/2026/jp/stages/#stage_map" target="_blank" rel="noopener">stage-area map</a> for the exact layout; the seating shown on this map is illustrative.</p></div>';
+    h+='<div class="desc"><p>会場生中継（ゆいP・にしむらベイベー）：DAY1 10:00〜／DAY2 09:30〜、開演前や幕間に配信。</p><p class="en">Venue live report with Yui-P and Nishimura Baby airs before and between programs from 10:00 (Day 1) and 09:30 (Day 2).</p></div>';
+  }
+  if(evs.length){
+    DAYS.forEach(function(d){
+      var de=evs.filter(function(e){return e.day===d.n;});
+      if(!de.length) return;
+      h+='<div><div class="lbl-s" style="margin-bottom:6px">'+d.jp+' · '+d.en+'</div><div class="slist">';
+      de.forEach(function(e){h+='<button type="button" class="srow'+(isOn(e.id)?' on':'')+'" data-open="'+e.id+'"><span class="mono">'+(e.assembly?'集合 '+e.s:e.s+'–'+e.e)+(isOn(e.id)?' ★':'')+'</span><span>'+B(esc(e.jp),esc(e.en))+badges(e,true)+'</span></button>';});
+      h+='</div></div>';
+    });
+  }
+  var plain=bs.filter(function(b){return !b.sessions;});
+  if(plain.length){
+    h+='<div><div class="lbl-s" style="margin-bottom:6px">'+(a==='park'||a==='aeon'?'ブース・店舗 · Booths & stalls (no ticket needed)':'終日のブース 09:00–21:00 · All-day booths')+'</div><div class="slist">';
+    plain.forEach(function(b){h+='<button type="button" class="srow'+(isOn(b.id)?' on':'')+'" data-open="'+b.id+'"><span class="mono">'+(b.num?'No.'+b.num:'終日 All day')+(isOn(b.id)?' ★':'')+'</span><span>'+B(esc(b.jp),esc(b.en))+badges(b,true)+'</span></button>';});
+    h+='</div></div>';
+  }
+  var sess=bs.filter(function(b){return b.sessions;});
+  sess.forEach(function(b){h+='<div class="desc"><p>'+esc(b.djp)+'</p><p class="en">'+esc(b.den)+'</p></div>'+ballotCallout(b)+payCallout(b);});
+  if(a.charAt(0)==='z'||a==='h13'||a==='outdoor') h+='<div class="desc"><p>抽選予約者の集合時刻は11:00〜19:30の30分ごと（応募時の希望時間帯内で指定）。有料コンテンツは当日会場で支払い。</p><p class="en">Ballot winners get an assembly time between 11:00 and 19:30 in 30-minute steps, within the window they chose. Paid items are paid on the day at the venue.</p></div>';
+  h+='</div>';
+  ui.sel=a;
+  openSheet(h); wireSheet();
+  if(ui.view==='map') renderMap();
+}
+function wireSheet(){
+  var r=$('overlay-root');
+  r.querySelectorAll('[data-toggle]').forEach(function(b){b.onclick=function(){var id=b.dataset.toggle;toggle(id);openItem(id);};});
+  r.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){openItem(b.dataset.open);};});
+  r.querySelectorAll('[data-area-go]').forEach(function(b){b.onclick=function(){var a=b.dataset.areaGo;closeSheet();ui.sel=a;show('map');openArea(a);};});
+  wireTodo(r);
+}
+
+/* ---------- info view ---------- */
+function renderInfo(){
+  var P=function(t,en,body){return '<div class="panel"><h3>'+t+'<span class="en">'+en+'</span></h3>'+body+'</div>';};
+  var h='';
+  h+=P('抽選・予約が必要なもの','What needs a ballot or booking',
+    '<ul><li><span class="bdg ballot req">抽選必須</span> クイックフォトセッション <span class="en">Quick Photo Session: ballot winners only</span></li>'+
+    '<li><span class="bdg ballot">抽選</span> 体験・グッズ17コンテンツ：予約なしでも参加可、当選者は優先列 <span class="en">17 activities and goods booths: optional ballot for a priority queue</span></li>'+
+    '<li><span class="bdg ballot req">要予約</span> コスプレ更衣室・クローク（先着）<span class="en">Cosplay room & cloak: advance booking, first come</span></li></ul>'+
+    '<p>応募：10/21（水）〜10/25（日）23:59、当選連絡10/28頃。アプリで第5希望まで、当選は1人1枠。2日通し券を同行者に分配してから応募。<br><span class="en">Apply Oct 21 – Oct 25 23:59, results around Oct 28. Up to 5 choices, one win per person. Distribute 2-day tickets to companions before applying.</span></p>');
+  h+=P('追加料金がかかるもの','What costs extra',
+    '<dl><dt>¥1,140</dt><dd>コスプレ更衣室（1日）<span class="en"> · Cosplay changing room, per day</span></dd>'+
+    '<dt>¥1,140</dt><dd>クローク（1日）<span class="en"> · Cloakroom, per day</span></dd>'+
+    '<dt>¥4,950</dt><dd>有料配信 両日券（＋手数料¥660）ピアノコンサート／THE PRIMALS<span class="en"> · Paid stream, both days (+¥660 fee). On-site viewing is included with your ticket.</span></dd>'+
+    '<dt>別売</dt><dd>イオンシネマ ライブビューイング（基調講演・THE PRIMALS）<span class="en"> · AEON Cinema live viewing tickets sold separately</span></dd>'+
+    '<dt>¥</dt><dd>グッズ・くじ・クレーンゲーム・カプセルトイ・ワークショップ・香水・フード<span class="en"> · Merch, kuji, crane game, capsule toys, workshop, perfume, food</span></dd></dl>'+
+    '<p>会場内の有料コンテンツは原則キャッシュレスのみ。現金可：アルカディアくじ、ワークショップ、オードパルファム、オフィシャルグッズ。<br><span class="en">Paid content in the venue is cashless only, except the Arcadia kuji, workshop, perfume and official merch, which also take cash.</span></p>');
+  h+=P('開催時間と会場','Hours & venues',
+    '<dl><dt>DAY 1</dt><dd>10/31（土）開場 09:00 · 終了 21:00</dd><dt>DAY 2</dt><dd>11/1（日）開場 09:00 · 終了 21:00</dd></dl>'+
+    '<ul><li>幕張メッセ 国際展示場 展示ホール1–7（千葉市美浜区中瀬2-1）<span class="en"> · Makuhari Messe Halls 1–7</span></li><li>イオンモール幕張新都心・豊砂公園：チケット不要<span class="en"> · AEON Mall & Toyosuna Park: open to everyone, no ticket</span></li><li>会場間は歩道橋で移動可、シャトルバスも運行<span class="en"> · Walk between sites by footbridge; shuttle buses also run</span></li></ul>');
+  h+=P('配信・ライブビューイング','Streams & live viewing',
+    '<ul><li>無料配信：音楽ステージ以外の全ステージ（YouTube DAY1/DAY2、Twitch）<span class="en"> · Free stream of every stage program except the two music shows</span></li><li>有料配信：StreamPass／FanStream、販売 〜11/21 23:59、アーカイブ 〜11/22 23:59<span class="en"> · Paid stream on sale until Nov 21; archive until Nov 22</span></li><li>ライブビューイング：イオンシネマ21館（基調講演・THE PRIMALS、応援上映）<span class="en"> · AEON Cinema at 21 theaters, cheering screenings</span></li></ul>');
+  h+=P('ステージ観覧のルール','Stage viewing rules',
+    '<ul><li>全席自由、前方から詰めて着席<span class="en"> · Unreserved; fill from the front</span></li><li>プログラムごとの入れ替えなし<span class="en"> · No clear-out between programs</span></li><li>スペシャルライブのみ着席エリアで立ち上がり可<span class="en"> · Standing allowed only during the Special Live</span></li><li>折りたたみ椅子は使用不可・長時間の席取り不可<span class="en"> · No folding chairs; do not leave bags to hold seats</span></li><li>車いすの方はスタッフへ（専用スペースあり）<span class="en"> · Wheelchair users: ask staff for the dedicated space</span></li><li>他のホールにも巨大スクリーンと座席あり<span class="en"> · Other halls have giant screens with seating</span></li></ul><p><a href="https://fanfest.finalfantasyxiv.com/2026/jp/stages/#stage_map" target="_blank" rel="noopener">公式ステージエリアマップ · Official stage-area map</a></p>');
+  h+=P('コスプレ','Cosplay',
+    '<ul><li>FFXIV関連のコスプレのみ<span class="en"> · FFXIV cosplay only</span></li><li>高さ180cm超・幅90cmのドアを通れない衣装は不可<span class="en"> · Nothing taller than 180 cm or wider than a 90 cm door</span></li><li>撮影は必ず相手の同意を得て<span class="en"> · Always ask before taking someone\u2019s photo</span></li><li>更衣室：クロス・ウェーブ幕張、8:00–22:00（最終受付21:30）<span class="en"> · Changing room at Cross Wave Makuhari, 8:00–22:00</span></li></ul>');
+  h+=P('出典','Sources',
+    '<ul><li><a href="https://fanfest.finalfantasyxiv.com/2026/jp/stages/" target="_blank" rel="noopener">ステージ · Stages</a></li><li><a href="https://fanfest.finalfantasyxiv.com/2026/jp/floors/" target="_blank" rel="noopener">フロア情報 · Floor info</a></li><li><a href="https://fanfest.finalfantasyxiv.com/2026/jp/maps/" target="_blank" rel="noopener">公式マップ · Official maps</a></li><li><a href="https://fanfest.finalfantasyxiv.com/2026/jp/floors/activity-reservation/" target="_blank" rel="noopener">コンテンツ事前予約 · Reservations</a></li><li><a href="https://fanfest.finalfantasyxiv.com/2026/jp/about/" target="_blank" rel="noopener">開催概要 · Event overview</a></li></ul><p class="en">Checked Oct 21, 2026. English names are fan translations.</p>');
+  $('info').innerHTML=h;
+}
+
+/* ---------- export / offline ---------- */
+function toast(jp,en){
+  var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.innerHTML=jp+'<span class="en">'+en+'</span>';
+  document.body.appendChild(t);setTimeout(function(){t.remove();},2600);
+}
+var dlNS;
+function getDownloads(){
+  if(dlNS!==undefined) return Promise.resolve(dlNS);
+  if(window.claude&&typeof window.claude.use==='function'){return window.claude.use('downloads').then(function(d){dlNS=d;return d;},function(){dlNS=null;return null;});}
+  return Promise.resolve(null);
+}
+function saveFile(name,data,mime){
+  var inArtifact=!!(window.claude&&typeof window.claude.use==='function');
+  if(inArtifact){
+    return getDownloads().then(function(d){
+      if(!d){toast('この表示では保存できません','Saving is not available in this view');return;}
+      return d.save({filename:name,data:data}).then(function(r){ if(r&&r.status==='saved') toast('保存しました: '+name,'Saved '+name); },function(err){
+        var c=err&&err.code;
+        if(c==='declined') toast('保存をキャンセルしました','Save cancelled');
+        else if(c==='rejected_extension') toast('この形式はここでは保存できません。オフライン版から書き出してください','This format can’t be saved here; export it from the offline copy');
+        else if(c==='rate_limited') toast('少し待ってからもう一度お試しください','Please wait a moment and try again');
+        else toast('保存できませんでした','The file could not be saved');
+      });
+    });
+  }
+  try{
+    var blob=new Blob([data],{type:mime}), a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);
+    toast('ダウンロードしました: '+name,'Downloaded '+name);
+  }catch(e){toast('保存できませんでした','The file could not be saved');}
+  return Promise.resolve();
+}
+function allScheduled(){var out=[];DAYS.forEach(function(d){agendaItems(d.n).forEach(function(it){it.day=d;out.push(it);});});return out;}
+function standaloneHTML(){
+  var style=document.getElementById('ff-style').outerHTML;
+  var fonts=document.getElementById('ff-fonts').outerHTML;
+  var script=document.getElementById('ff-script').textContent;
+  var seed=JSON.stringify(state).replace(/</g,'\\u003c');
+  return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'+
+    '<title>Fan Fest Tokyo 2026 Planner (offline)</title><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>'+
+    fonts+style+'</head><body>'+PRISTINE+'<div id="overlay-root"></div>'+
+    '<script>window.__SEED_AGENDA='+seed+';window.__STANDALONE=true;<\/script><script id="ff-script">'+script+'<\/script></body></html>';
+}
+function csv(){
+  var rows=[['Subject','Start Date','Start Time','End Date','End Time','All Day Event','Description','Location']];
+  function d(s){var p=s.split('-');return p[1]+'/'+p[2]+'/'+p[0];}
+  function t(m){var h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',hh=h%12||12;return hh+':'+String(mm).padStart(2,'0')+' '+ap;}
+  allScheduled().forEach(function(it){var x=it.x,A=AREAS[x.area];
+    var note=[x.ballot==='req'?'抽選必須 Ballot required':x.ballot==='opt'?'抽選予約あり Optional ballot':x.ballot==='book'?'要予約 Booking required':'', x.pay?'¥ 有料要素あり Involves payment':''].filter(Boolean).join(' / ');
+    rows.push([x.jp+' / '+x.en,d(it.day.date),t(it.s),d(it.day.date),t(it.e),'False',(note?note+' — ':'')+'Times in JST',A.jp+' / '+A.en]);});
+  return rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\r\n');
+}
+function ics(){
+  function utc(date,min){var p=date.split('-').map(Number);var ms=Date.UTC(p[0],p[1]-1,p[2],0,0)+(min-9*60)*60000;var x=new Date(ms);return x.toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';}
+  function e(s){return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+  var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//fan guide//FF Fan Fest Tokyo 2026 Planner//JA','CALSCALE:GREGORIAN'];
+  var stamp=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+  allScheduled().forEach(function(it){var x=it.x,A=AREAS[x.area];
+    L.push('BEGIN:VEVENT','UID:'+it.id+'-'+it.day.n+'@ff26tokyo.fanguide','DTSTAMP:'+stamp,'DTSTART:'+utc(it.day.date,it.s),'DTEND:'+utc(it.day.date,it.e),'SUMMARY:'+e(x.jp+' / '+x.en),'LOCATION:'+e(A.jp+' / '+A.en),'DESCRIPTION:'+e((x.djp||'')+'\n'+(x.den||'')),'END:VEVENT');});
+  L.push('END:VCALENDAR');
+  return L.join('\r\n');
+}
+function agendaText(){
+  var out=['FFXIV ファンフェスティバル 2026 in 東京 — マイアジェンダ / My agenda (JST)'];
+  DAYS.forEach(function(d){
+    var it=agendaItems(d.n); if(!it.length) return;
+    out.push('',d.jp+' / '+d.en);
+    it.forEach(function(i){var x=i.x;out.push(T(i.s)+'–'+T(i.e)+'  '+x.jp+' ('+x.en+') @ '+AREAS[x.area].jp+(i.clash?'  ⚠ 重複 overlap':'')+(x.ballot==='req'?'  [抽選必須]':'')+(x.pay?'  [¥]':''));});
+  });
+  var un=Object.keys(state.visits).filter(function(id){var v=state.visits[id];return !(v.day&&v.s);});
+  if(un.length){out.push('','時間未定 / No time set');un.forEach(function(id){out.push('・'+BOOTH[id].jp+' ('+BOOTH[id].en+') @ '+AREAS[BOOTH[id].area].jp);});}
+  return out.join('\n');
+}
+function wireExport(){
+  $('btn-offline').onclick=function(){saveFile('fanfest-tokyo-2026-guide.html',standaloneHTML(),'text/html');};
+  $('btn-csv').onclick=function(){ if(!allScheduled().length){toast('時間が決まった予定がありません','No timed items to export yet');return;} saveFile('my-fanfest-agenda.csv','\ufeff'+csv(),'text/csv');};
+  $('btn-ics').onclick=function(){
+    if(!allScheduled().length){toast('時間が決まった予定がありません','No timed items to export yet');return;}
+    if(window.claude&&typeof window.claude.use==='function'){toast('.icsはオフライン版から書き出せます。ここではCSVをお使いください','Export .ics from the offline copy; use CSV here');return;}
+    saveFile('my-fanfest-agenda.ics',ics(),'text/calendar');};
+  $('btn-copy').onclick=function(){
+    var txt=agendaText();
+    var fb=function(){$('copy-fallback').hidden=false;var ta=$('copy-text');ta.value=txt;ta.focus();ta.select();toast('テキストを選択しました。コピーしてください','Text selected — copy it manually');};
+    try{ navigator.clipboard.writeText(txt).then(function(){toast('コピーしました','Copied to clipboard');},fb);}catch(e){fb();}
+  };
+  $('btn-clear').onclick=function(){$('clear-confirm').hidden=false;};
+  $('btn-clear-no').onclick=function(){$('clear-confirm').hidden=true;};
+  $('btn-clear-yes').onclick=function(){state={picks:{},visits:{}};save();$('clear-confirm').hidden=true;rerender();toast('クリアしました','My agenda cleared');};
+}
+
+/* ---------- network status ---------- */
+function net(){
+  var on=navigator.onLine!==false;
+  $('net').className='net'+(on?'':' off');
+  $('net-jp').textContent=on?(STANDALONE?'オフライン版':'オンライン'):'オフライン表示中';
+  $('net-en').textContent=on?(STANDALONE?'Offline copy · saved on this device':'Works offline once loaded'):'Offline — your agenda is saved on this device';
+}
+
+/* ---------- routing ---------- */
+var VIEWS=['schedule','map','agenda','info'];
+function show(v){
+  if(VIEWS.indexOf(v)<0) v='schedule';
+  ui.view=v;
+  VIEWS.forEach(function(x){$('view-'+x).hidden=(x!==v);$('tab-'+x).setAttribute('aria-selected',x===v?'true':'false');});
+  try{history.replaceState(null,'','#'+v);}catch(e){}
+  rerender();
+}
+function rerender(keepTodo){
+  if(ui.view==='schedule') renderSchedule();
+  else if(ui.view==='map') renderMap();
+  else if(ui.view==='agenda'){ if(!keepTodo) renderAgenda(); else { var y=window.scrollY; renderAgenda(); window.scrollTo(0,y);} }
+  updateCount();
+}
+
+/* ---------- boot ---------- */
+load();
+document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){show(b.dataset.view);};});
+$('legend').innerHTML=legendHTML();
+countdown(); ballotNotice(); renderInfo(); wireExport(); net();
+window.addEventListener('online',net); window.addEventListener('offline',net);
+var h=(location.hash||'').replace('#','');
+show(VIEWS.indexOf(h)>=0?h:'schedule');
+// scroll schedule to 09:00 on first paint
+setTimeout(function(){var s=$('sched'); if(s) s.scrollTop=px(9*60)-8;},0);
+setInterval(function(){countdown(); if(ui.view==='schedule'||ui.view==='agenda') rerender(true);},60000);
+})();
+</script>
+</body></html>
