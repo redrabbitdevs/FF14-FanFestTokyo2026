@@ -96,6 +96,17 @@ main{padding-block:20px 48px}
 .bdgs{display:flex;flex-wrap:wrap;gap:3px}
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:var(--muted);align-items:center;margin:8px 0 12px}
 .legend span{display:inline-flex;gap:6px;align-items:center}
+.legend .lt{font-size:12px;color:var(--muted);margin-right:2px}
+.lchip{appearance:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:3px 10px 3px 7px;font-size:12px;cursor:pointer;line-height:1.3;text-align:left}
+.lchip:hover{border-color:var(--aether)}
+.lchip[aria-pressed="true"]{border-color:var(--aether);background:var(--aether-soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--aether)}
+.lchip[aria-pressed="true"]::after{content:"✓";font-size:11px;color:var(--aether);font-weight:700}
+.lgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lclear{appearance:none;border:0;background:none;color:var(--aether);font-size:12px;cursor:pointer;text-decoration:underline;padding:3px 4px}
+.lcount{font-size:12px;color:var(--ink);font-weight:700}
+svg .area.dim{opacity:.28}
+.acard.dim{opacity:.45}
+.band .none{font-size:11.5px;color:var(--muted);padding:6px 2px}
 .dot{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--c)}
 
 /* schedule grid */
@@ -288,10 +299,6 @@ footer .wrap{padding-block:18px 28px;display:flex;flex-direction:column;gap:6px}
     <div class="toolbar" style="margin-top:16px">
       <div class="seg" id="day-seg"></div>
       <div class="chips" id="col-chips" aria-label="Venues"></div>
-    </div>
-    <div class="toolbar">
-      <span class="lbl-s">ハイライト · Highlight</span>
-      <div class="seg" id="hl-seg"></div>
     </div>
     <div class="legend" id="legend"></div>
     <div class="sched" id="sched"></div>
@@ -539,16 +546,43 @@ function badges(x,compact){
   else if(x.pay==='buy') h+='<span class="bdg pay" title="購入時に支払い · Pay for purchases">¥'+(compact?'':' 購入 · Purchases')+'</span>';
   return h?'<span class="bdgs">'+h+'</span>':'';
 }
-function legendHTML(){
-  var h='';
-  Object.keys(CATS).forEach(function(k){h+='<span><i class="dot" style="--c:var('+CATS[k].v+')"></i>'+CATS[k].jp+' <span style="opacity:.8">'+CATS[k].en+'</span></span>';});
-  h+='<span><span class="bdg ballot req">抽選必須</span>ballot required</span>';
-  h+='<span><span class="bdg ballot">抽選</span>optional ballot · priority queue</span>';
-  h+='<span><span class="bdg ballot req">要予約</span>booking required</span>';
-  h+='<span><span class="bdg pay req">¥ 有料</span>extra fee</span>';
-  h+='<span><span class="bdg pay">¥ 配信</span>on-site included · stream paid</span>';
-  h+='<span><span class="bdg pay">¥</span>pay for what you buy</span>';
+var BFILTERS=[
+  {k:'breq',chip:'<span class="bdg ballot req">抽選必須</span>',jp:'抽選必須',en:'ballot required',t:function(x){return x.ballot==='req';}},
+  {k:'bopt',chip:'<span class="bdg ballot">抽選</span>',jp:'任意の抽選',en:'optional ballot · priority queue',t:function(x){return x.ballot==='opt';}},
+  {k:'book',chip:'<span class="bdg ballot req">要予約</span>',jp:'事前予約',en:'booking required',t:function(x){return x.ballot==='book';}},
+  {k:'preq',chip:'<span class="bdg pay req">¥ 有料</span>',jp:'追加料金',en:'extra fee',t:function(x){return x.pay==='req';}},
+  {k:'pstream',chip:'<span class="bdg pay">¥ 配信</span>',jp:'配信は有料',en:'on-site included · stream paid',t:function(x){return x.pay==='stream';}},
+  {k:'pbuy',chip:'<span class="bdg pay">¥</span>',jp:'購入時に支払い',en:'pay for what you buy',t:function(x){return x.pay==='buy';}}
+];
+function filterActive(){return Object.keys(ui.f.cat).length+Object.keys(ui.f.b).length>0;}
+function match(x){
+  if(ui.noFilter) return true;
+  var cats=Object.keys(ui.f.cat), bs=Object.keys(ui.f.b);
+  if(cats.length&&!ui.f.cat[x.cat]) return false;
+  if(bs.length&&!BFILTERS.some(function(f){return ui.f.b[f.k]&&f.t(x);})) return false;
+  return true;
+}
+function legendHTML(scope){
+  var h='<div class="lgroup"><span class="lt">種類 · Type</span>';
+  Object.keys(CATS).forEach(function(k){h+='<button type="button" class="lchip" data-fk="cat" data-fv="'+k+'" aria-pressed="'+!!ui.f.cat[k]+'"><i class="dot" style="--c:var('+CATS[k].v+')"></i>'+CATS[k].jp+' <span style="opacity:.8">'+CATS[k].en+'</span></button>';});
+  h+='</div><div class="lgroup"><span class="lt">抽選・料金 · Ballot &amp; fees</span>';
+  BFILTERS.forEach(function(f){h+='<button type="button" class="lchip" data-fk="b" data-fv="'+f.k+'" aria-pressed="'+!!ui.f.b[f.k]+'" title="'+f.jp+' · '+f.en+'">'+f.chip+'<span>'+f.en+'</span></button>';});
+  h+='</div>';
+  if(filterActive()){
+    var pool=BOOTHS.slice(), evs=EVENTS;
+    if(scope==='schedule'){ evs=EVENTS.filter(function(e){return e.day===ui.day;}); pool=pool.filter(function(b){return !b.sessions;}); }
+    var n=evs.filter(match).length+pool.filter(match).length;
+    h+='<span class="lcount" role="status">'+n+' 件該当 · '+n+' match'+(n===1?'':'es')+(scope==='schedule'?' ('+DAYS[ui.day-1].en+')':'')+'</span><button type="button" class="lclear" data-fclear>絞り込み解除 · Clear filters</button>';
+  }
   return h;
+}
+function renderLegend(elId,scope){
+  var el=$(elId); el.innerHTML=legendHTML(scope);
+  el.querySelectorAll('[data-fk]').forEach(function(b){b.onclick=function(){
+    var g=ui.f[b.dataset.fk], v=b.dataset.fv; if(g[v]) delete g[v]; else g[v]=true; rerender();
+    var again=$(elId).querySelector('[data-fk="'+b.dataset.fk+'"][data-fv="'+v+'"]'); if(again) again.focus();
+  };});
+  var c=el.querySelector('[data-fclear]'); if(c) c.onclick=function(){ui.f={cat:{},b:{}};rerender();};
 }
 
 /* ---------- state ---------- */
@@ -574,7 +608,7 @@ function updateCount(){$('agenda-count').textContent=Object.keys(state.picks).le
 
 /* ---------- time / now ---------- */
 function jstNow(){var d=new Date(Date.now()+9*3600e3);return {date:d.toISOString().slice(0,10),min:d.getUTCHours()*60+d.getUTCMinutes()};}
-var ui={day:1,agDay:1,hl:'all',cols:{},view:'schedule',sel:null};
+var ui={day:1,agDay:1,f:{cat:{},b:{}},noFilter:false,cols:{},view:'schedule',sel:null};
 COLS.forEach(function(c){ui.cols[c.id]=true;});
 (function(){var n=jstNow(); if(n.date==='2026-11-01') {ui.day=2;ui.agDay=2;}})();
 
@@ -600,7 +634,6 @@ function ballotNotice(){
 /* ---------- schedule view ---------- */
 var GS=8*60, GE=22*60;
 function px(min){return (min-GS)*(72/60);}
-function hlMatch(x){ if(ui.hl==='ballot') return !!x.ballot; if(ui.hl==='pay') return !!x.pay; return true; }
 
 function renderDaySeg(elId,key){
   var h='';DAYS.forEach(function(d){h+='<button type="button" aria-pressed="'+(ui[key]===d.n)+'" data-day="'+d.n+'">'+B(d.jp,d.en)+'</button>';});
@@ -614,9 +647,7 @@ function renderSchedule(){
   $('col-chips').querySelectorAll('button').forEach(function(b){b.onclick=function(){
     var id=b.dataset.col; var n=Object.keys(ui.cols).filter(function(k){return ui.cols[k];}).length;
     if(ui.cols[id]&&n===1) return; ui.cols[id]=!ui.cols[id]; renderSchedule();};});
-  var hl=[['all','すべて','All'],['ballot','抽選・予約','Ballot / booking'],['pay','有料','Extra payment']];
-  $('hl-seg').innerHTML=hl.map(function(o){return '<button type="button" aria-pressed="'+(ui.hl===o[0])+'" data-hl="'+o[0]+'">'+B(o[1],o[2])+'</button>';}).join('');
-  $('hl-seg').querySelectorAll('button').forEach(function(b){b.onclick=function(){ui.hl=b.dataset.hl;renderSchedule();};});
+  renderLegend('legend','schedule');
 
   var cols=COLS.filter(function(c){return ui.cols[c.id];});
   var H=px(GE);
@@ -643,8 +674,11 @@ function renderSchedule(){
       if(c.id==='aeon'||c.id==='park') hdr='<b>チケット不要</b> · 営業時間は公式で確認<br>No ticket needed · check official hours';
       else hdr='<b>終日 09:00–21:00</b> · 抽選予約者の集合枠 11:00–19:30（30分毎）<br>All day · ballot-winner slots 11:00–19:30, every 30 min';
       body+='<div class="band" style="top:'+top+'px;height:'+hgt+'px"><div class="band-h">'+hdr+'</div>';
-      bs.forEach(function(b){body+=chip(b);});
-      body+='<div class="more" aria-hidden="true">'+bs.length+' 件 · scroll ↓</div></div>';
+      var shown=bs.filter(match);
+      if(filterActive()) body+='<div class="lbl-s" style="font-size:10.5px">'+shown.length+' / '+bs.length+' 件表示 · shown</div>';
+      shown.forEach(function(b){body+=chip(b);});
+      if(!shown.length) body+='<div class="none">該当なし · No matches here</div>';
+      body+='<div class="more" aria-hidden="true">'+shown.length+' 件 · scroll ↓</div></div>';
     }
     if(now.date===day.date && now.min>=GS && now.min<=GE) body+='<div class="nowline" style="top:'+px(now.min)+'px"></div>';
     body+='</div>';
@@ -670,13 +704,13 @@ function evBlock(e,top,h,extraCls,leftPct,widthPct,sub){
   var lj=Math.max(1,Math.min(4,Math.floor(avail*0.62/17))), le=Math.max(1,Math.min(2,Math.floor((avail-lj*17)/14)));
   style+=';--lj:'+lj+';--le:'+le;
   var full=e.jp+' / '+e.en+' ('+label+')';
-  return '<div class="ev'+(on?' on':'')+(short?' short':'')+(hlMatch(e)?'':' dim')+(extraCls?' '+extraCls:'')+'" style="'+style+'">'+
+  return '<div class="ev'+(on?' on':'')+(short?' short':'')+(match(e)?'':' dim')+(extraCls?' '+extraCls:'')+'" style="'+style+'">'+
     '<button type="button" class="ev-main" data-open="'+e.id+'" title="'+esc(full)+'" aria-label="'+esc(full)+'"><span class="t mono">'+label+'</span>'+(sub?'<span class="t2">'+sub+'</span>':'')+'<span class="jp">'+esc(e.sjp||e.jp)+'</span>'+(short?'':'<span class="en">'+esc(e.sen||e.en)+'</span>')+(showB?badges(e,true):'')+'</button>'+
     '<button type="button" class="star" data-star="'+e.id+'" aria-pressed="'+on+'" aria-label="マイアジェンダ · My agenda">'+(on?'★':'☆')+'</button></div>';
 }
 function chip(b){
   var c=CATS[b.cat], on=isOn(b.id);
-  return '<button type="button" class="bchip'+(on?' on':'')+(hlMatch(b)?'':' dim')+'" data-open="'+b.id+'" title="'+esc(b.jp+' / '+b.en)+'" style="--c:var('+c.v+')"><i class="dot"></i><span class="nm">'+B(esc(b.jp),esc(b.en))+badges(b,true)+'</span>'+(on?'<span aria-label="in agenda" style="color:var(--gold)">★</span>':'')+'</button>';
+  return '<button type="button" class="bchip'+(on?' on':'')+(match(b)?'':' dim')+'" data-open="'+b.id+'" title="'+esc(b.jp+' / '+b.en)+'" style="--c:var('+c.v+')"><i class="dot"></i><span class="nm">'+B(esc(b.jp),esc(b.en))+badges(b,true)+'</span>'+(on?'<span aria-label="in agenda" style="color:var(--gold)">★</span>':'')+'</button>';
 }
 function wireBlocks(root){
   root.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){openItem(b.dataset.open);};});
@@ -687,9 +721,9 @@ function wireBlocks(root){
 function mapSVG(){
   function txt(x,y,jp,en,size,anchor){anchor=anchor||'start';size=size||15;return '<text x="'+x+'" y="'+y+'" text-anchor="'+anchor+'" font-size="'+size+'" font-weight="700" fill="var(--ink)" font-family="var(--f-body)">'+jp+'</text>'+(en?'<text x="'+x+'" y="'+(y+size*0.95)+'" text-anchor="'+anchor+'" font-size="'+(size*0.72)+'" fill="var(--muted)" font-family="var(--f-body)">'+en+'</text>':'');}
   function area(id,x,y,w,h,jp,en,size,extra,en2){
-    var n=countIn(id);
+    var n=countIn(id), dim=filterActive()&&!areaMatches(id);
     var l2=en2?'<text x="'+(x+10)+'" y="'+(y+22+(size||15)*1.75)+'" font-size="'+((size||15)*0.72)+'" fill="var(--muted)" font-family="var(--f-body)">'+en2+'</text>':'';
-    return '<g class="area'+(ui.sel===id?' sel':'')+'" data-area="'+id+'" tabindex="0" role="button" aria-label="'+jp+' '+en+(en2?' '+en2:'')+'"><rect class="fill" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>'+txt(x+10,y+22,jp,en,size)+l2+(extra||'')+
+    return '<g class="area'+(ui.sel===id?' sel':'')+(dim?' dim':'')+'" data-area="'+id+'" tabindex="0" role="button" aria-label="'+jp+' '+en+(en2?' '+en2:'')+'"><rect class="fill" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>'+txt(x+10,y+22,jp,en,size)+l2+(extra||'')+
       (n?'<circle cx="'+(x+w-16)+'" cy="'+(y+h-16)+'" r="11" fill="var(--gold)"/><text x="'+(x+w-16)+'" y="'+(y+h-11.5)+'" text-anchor="middle" font-size="12" font-weight="700" fill="var(--surface)" font-family="var(--f-mono)">'+n+'</text>':'')+'</g>';
   }
   var s='<svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="会場簡略図 Venue schematic">';
@@ -734,10 +768,13 @@ function mapSVG(){
   // food stall dots
   for(var i=0;i<24;i++){
     var col=i%4,row=Math.floor(i/4), cx=870+col*31, cy=300+row*50, id='food-'+(i+1), on=isOn(id);
-    s+='<g class="area" data-open="'+id+'" tabindex="0" role="button" aria-label="'+esc(BOOTHS.filter(function(b){return b.id===id;})[0].jp)+'"><circle cx="'+cx+'" cy="'+cy+'" r="12" fill="'+(on?'var(--gold)':'var(--surface)')+'" stroke="var(--c-food)" stroke-width="1.5"/><text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(on?'var(--surface)':'var(--c-food)')+'" font-family="var(--f-mono)">'+(i+1)+'</text></g>';
+    s+='<g class="area'+(filterActive()&&!match(BOOTH[id])?' dim':'')+'" data-open="'+id+'" tabindex="0" role="button" aria-label="'+esc(BOOTHS.filter(function(b){return b.id===id;})[0].jp)+'"><circle cx="'+cx+'" cy="'+cy+'" r="12" fill="'+(on?'var(--gold)':'var(--surface)')+'" stroke="var(--c-food)" stroke-width="1.5"/><text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(on?'var(--surface)':'var(--c-food)')+'" font-family="var(--f-mono)">'+(i+1)+'</text></g>';
   }
   s+='</svg>';
   return s;
+}
+function areaMatches(a){
+  return EVENTS.some(function(e){return e.area===a&&match(e);})||BOOTHS.some(function(b){return b.area===a&&match(b);});
 }
 function countIn(areaId){
   var n=0;
@@ -747,13 +784,15 @@ function countIn(areaId){
 }
 var MAP_ORDER=['stage','photo','zA','zB','zC','zD','h13','zE','mall2f','outdoor','messe','aeon','park','xwave'];
 function renderMap(){
-  $('legend-map').innerHTML=legendHTML();
+  renderLegend('legend-map','map');
   $('map-svg').innerHTML=mapSVG();
   var h='';
   MAP_ORDER.forEach(function(a){
     var A=AREAS[a], nb=BOOTHS.filter(function(b){return b.area===a;}).length, ne=EVENTS.filter(function(e){return e.area===a;}).length;
     var meta=(ne?ne+' 枠 sessions':'')+(ne&&nb?' · ':'')+(nb?nb+' 件 booths':'');
-    h+='<div class="acard'+(ui.sel===a?' sel':'')+'"><button type="button" data-area="'+a+'">'+B(A.jp,A.en+' · '+A.where[1])+'<span class="meta">'+meta+(countIn(a)?'<br><span style="color:var(--gold)">★ '+countIn(a)+'</span>':'')+'</span></button></div>';
+    var fa=filterActive(), fm=fa?EVENTS.filter(function(e){return e.area===a&&match(e);}).length+BOOTHS.filter(function(b){return b.area===a&&match(b);}).length:0;
+    if(fa) meta+='<br><span style="color:var(--aether)">'+fm+' 件該当 · match'+(fm===1?'':'es')+'</span>';
+    h+='<div class="acard'+(ui.sel===a?' sel':'')+(fa&&!fm?' dim':'')+'"><button type="button" data-area="'+a+'">'+B(A.jp,A.en+' · '+A.where[1])+'<span class="meta">'+meta+(countIn(a)?'<br><span style="color:var(--gold)">★ '+countIn(a)+'</span>':'')+'</span></button></div>';
   });
   $('area-list').innerHTML=h;
   document.querySelectorAll('#view-map [data-area]').forEach(function(g){
@@ -783,7 +822,7 @@ function lanes(items){
 function renderAgenda(){
   renderDaySeg('ag-day-seg','agDay');
   var items=agendaItems(ui.agDay);
-  var savedHl=ui.hl; ui.hl='all';
+  ui.noFilter=true;
   var clashes=items.filter(function(i){return i.clash;}).length;
   var nb=items.filter(function(i){return i.x.ballot;}).length, np=items.filter(function(i){return i.x.pay;}).length;
   var sum='<span class="pill">'+items.length+' 件 · items</span>';
@@ -816,7 +855,7 @@ function renderAgenda(){
     $('ag-tl').innerHTML='<div class="tl">'+g+lane+'</div>';
     wireBlocks($('ag-tl'));
   }
-  ui.hl=savedHl;
+  ui.noFilter=false;
   // to-visit list
   var ids=Object.keys(state.visits).filter(function(id){return BOOTH[id]&&!BOOTH[id].sessions||BOOTH[id];});
   if(!ids.length){$('ag-todo').innerHTML='<div class="empty" style="padding:14px">ブースはまだ追加されていません。<br>No booths added yet. Open a booth on the Schedule or Map and choose “Add”.</div>';}
@@ -1132,7 +1171,6 @@ function rerender(keepTodo){
 /* ---------- boot ---------- */
 load();
 document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){show(b.dataset.view);};});
-$('legend').innerHTML=legendHTML();
 countdown(); ballotNotice(); renderInfo(); wireExport(); net();
 window.addEventListener('online',net); window.addEventListener('offline',net);
 var h=(location.hash||'').replace('#','');
